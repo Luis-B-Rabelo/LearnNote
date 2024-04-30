@@ -66,7 +66,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Source\MVVM\Models\" />
 	  <Folder Include="Source\MVVM\ViewModels\" />
 	  <Folder Include="Source\DAO\" />
 	</ItemGroup>
