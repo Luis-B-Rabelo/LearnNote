@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnNote.Source.MVVM.Views.RegistrationPage"
+             Title="RegistrationPage"
+             Shell.NavBarIsVisible="False">
+    
+    <FlexLayout BackgroundColor="AliceBlue"
+             Margin="0"
+             VerticalOptions="Fill"
+             HorizontalOptions="Fill"
+             Padding="50"
+            AlignContent="Center"
+            Direction="Column"
+            Position="Absolute"
+            JustifyContent="Center">
+        <ScrollView>
+        <Frame 
+        BackgroundColor="White"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        CornerRadius="4"
+        Padding="5"
+        MinimumWidthRequest="300"
+        MaximumWidthRequest="500"
+        MinimumHeightRequest="400"
+        MaximumHeightRequest="700">
+
+            <FlexLayout Padding="50" Margin="50" JustifyContent="SpaceEvenly" Direction="Column" Position="Relative">
+                <StackLayout VerticalOptions="Start" HorizontalOptions="Center" Spacing="10" Padding="0, 0, 0, 15">
+                    <Label 
+                    Text="Cadastro"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontSize="Header"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" />
+                </StackLayout>
+
+                <BoxView Color="Gray"
+                     HeightRequest="1"
+                     HorizontalOptions="Fill"></BoxView>
+
+                    <StackLayout Spacing="10" Padding="0, 15, 0, 10">
+
+                        <Label Text="Username" TextColor="Black" FontSize="Micro"></Label>
+                        <Border Stroke="Pink" StrokeShape="RoundRectangle 8, 8, 8, 8">
+                            <Entry x:Name="username"
+                               Placeholder="Type your username"
+                               TextColor="Black"
+                               TextChanged="OnEntryUsernameChanged"
+                               Completed="OnEntryUsenameCompleted"/>
+                        </Border>
+
+                        <Label Text="Email" TextColor="Black" FontSize="Micro"></Label>
+                        <Border Stroke="Pink" StrokeShape="RoundRectangle 8, 8, 8, 8">
+                            <Entry x:Name="email"
+                               Placeholder="Type your best e-mail"
+                               TextColor="Black"
+                               TextChanged="OnEntryEmailChanged"
+                               Completed="OnEntryEmailCompleted"></Entry>
+                        </Border>
+
+                        <Label Text="Senha" TextColor="Black" FontSize="Micro"></Label>
+                        <Border Stroke="Pink" StrokeShape="RoundRectangle 8, 8, 8, 8">
+                            <Entry x:Name="password"
+                                Placeholder="Type a strong password"
+                                TextColor="Black"
+                                TextChanged="OnEntryPasswordChanged"
+                                Completed="OnEntryPasswordCompleted"
+                                IsPassword="True"/>
+                        </Border>
+
+                        <Label Text="Confirmar Senha" TextColor="Black" FontSize="Micro"></Label>
+                        <Border Stroke="Pink" StrokeShape="RoundRectangle 8, 8, 8, 8">
+                            <Entry x:Name="confirmPassword"
+                                Placeholder="Confirm your password"
+                                TextColor="Black"
+                                TextChanged="OnEntryConfirmPasswordChanged"
+                                Completed="OnEntryConfirmPasswordCompleted"
+                                IsPassword="True"></Entry>
+                        </Border>
+                    </StackLayout>
+                
+                    <BoxView Color="Gray"
+                     HeightRequest="1"
+                     HorizontalOptions="Fill"></BoxView>
+                
+                    <StackLayout Spacing="20" Padding="0, 20, 0, 10">
+                        <Button 
+                    Text="Cadastrar"
+                    Clicked="RegisterBtn"
+                    VerticalOptions = "Center"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Pink"
+                    MinimumWidthRequest="200"/>
+
+                        <Label
+                    TextColor="Black"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Text="Retornar à página de login"
+                    TextDecorations="Underline"
+                    FontSize="Caption">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ReturnToLoginPage" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </FlexLayout>
+        </Frame>
+        </ScrollView>
+    </FlexLayout>
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿namespace LearnNote
+﻿namespace LearnNote.Source.MVVM.Views
 {
     public partial class MainPage : ContentPage
     {
