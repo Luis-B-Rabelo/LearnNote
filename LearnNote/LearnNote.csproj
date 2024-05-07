@@ -57,29 +57,50 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="NLog.config" />
 	  <None Remove="Resources\Images\usuario.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Include="NLog.config">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="NLog" Version="5.2.8" />
 		<PackageReference Include="NLog.Schema" Version="5.2.8" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Source\MVVM\Models\" />
-	  <Folder Include="Source\MVVM\ViewModels\" />
 	  <Folder Include="Source\DAO\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Source\MVVM\Views\LoginPage.xaml">
+	  <Compile Update="Source\MVVM\Views\HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Source\MVVM\Views\SignUpPage.xaml.cs">
+	    <DependentUpon>SignUpPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Source\MVVM\Views\SignInPage.xaml.cs">
+	    <DependentUpon>SignInPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Source\MVVM\Views\SignInPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Source\MVVM\Views\RegistrationPage.xaml">
+	  <MauiXaml Update="Source\MVVM\Views\SignUpPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\StartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

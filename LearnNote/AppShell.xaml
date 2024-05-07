@@ -3,13 +3,14 @@
     x:Class="LearnNote.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:LearnNote.Source.MVVM.Views"
+    xmlns:local="clr-namespace:LearnNote"
+    xmlns:view="clr-namespace:LearnNote.Source.MVVM.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="LearnNote">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage" />
+        Title="StartPage"
+        ContentTemplate="{DataTemplate view:StartPage}"
+        Route="StartPage" />
 
 </Shell>

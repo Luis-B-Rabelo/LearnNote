@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnNote.Source.MVVM.Views.SignInPage"
+             Title="SignInPage"
+             xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels"
+             x:DataType="viewModel:SignInViewModel"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Content>
+        <Frame 
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            CornerRadius="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition x:Name="SignInFormColumn" Width="1*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition x:Name="SignInFormRow" Height="16*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            
+                <Frame Grid.Column="1" Grid.Row="1">
+                    <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center">
+            
+                        <Label FontSize="Title" HorizontalOptions="Center" Text="{Binding PageName}"></Label>
+
+                        <BoxView 
+                            Color="Gray"
+                            HeightRequest="2"
+                            HorizontalOptions="Fill"/>
+                        
+                        <Entry Placeholder="Email" Text="{Binding Email}"/>
+
+                        <Entry Placeholder="Senha" Text="{Binding Password}"/>
+
+                        <BoxView 
+                            Color="Gray"
+                            HeightRequest="2"
+                            HorizontalOptions="Fill"/>
+                        
+                        <Button 
+                                Text="Logar"
+                                HorizontalOptions="Center">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                            Command="{Binding SignInCommand}"
+                                />
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button 
+                                Text="Se cadastrar"
+                                HorizontalOptions="Center">
+                                <Button.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                            Command="{Binding NavigateToSignUpCommand}"
+                                />
+                                </Button.GestureRecognizers>
+                            </Button>
+                    </VerticalStackLayout>
+                </Frame>
+        
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
