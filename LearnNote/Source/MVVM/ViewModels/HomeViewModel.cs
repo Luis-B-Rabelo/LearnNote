@@ -1,22 +1,49 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using LearnNote.Model;
+using LearnNote.Source.DAO;
+using LearnNote.Source.MVVM.Views;
 
-namespace LearnNote.Source.MVVM.ViewModels
+namespace LearnNote.Source.MVVM.ViewModels;
+
+[QueryProperty("Email", "Email")]
+public partial class HomeViewModel : ObservableObject
 {
-    public partial class HomeViewModel : ObservableObject
+    [ObservableProperty]
+    private string _email;
+
+    private uint _userId;
+
+    private string _userName;
+
+    public string UserName
     {
-        private string _pageName;
+        get => _userName;
+    }
 
-        public string PageName
-        {
-            get 
-            { 
-                return _pageName; 
-            }
-        }
+    public uint UserId
+    {
+        get => _userId;
+    }
 
-        public HomeViewModel() 
+    private UserModel _user;
+
+    public UserModel User
+    {
+        get => _user;
+        set
         {
-            _pageName = "HomePage";
+            _user = value;
+            _userName = _user.UserName;
+            _userId = _user.UserId;
         }
+    }
+
+    public HomeViewModel() 
+    {
+        UserDAO userDAO = new UserDAO();
+        if(Email is not null)
+            _user = userDAO.SelectUser(Email);
+        else
+            Shell.Current.GoToAsync(nameof(SignInPage));
     }
 }

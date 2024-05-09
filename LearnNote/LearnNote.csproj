@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="NLog.config" />
+	  <None Remove="Resources\Fonts\Forum-Regular.ttf" />
 	  <None Remove="Resources\Images\usuario.svg" />
 	</ItemGroup>
 
@@ -70,18 +71,17 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
-		<PackageReference Include="NLog" Version="5.2.8" />
-		<PackageReference Include="NLog.Schema" Version="5.2.8" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
+		<PackageReference Include="MySql.Data" Version="8.4.0" />
+		<PackageReference Include="NLog" Version="5.3.2" />
+		<PackageReference Include="NLog.Schema" Version="5.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Source\MVVM\Models\" />
-	  <Folder Include="Source\DAO\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <Compile Update="Source\MVVM\Views\ConfigsPage.xaml.cs">
+	    <DependentUpon>ConfigsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Source\MVVM\Views\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
@@ -91,9 +91,30 @@
 	  <Compile Update="Source\MVVM\Views\SignInPage.xaml.cs">
 	    <DependentUpon>SignInPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Source\MVVM\Views\AlarmPage.xaml.cs">
+	    <DependentUpon>AlarmPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Source\MVVM\Views\ActivityPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\CalendarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\ConfigsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\NotebookPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\NotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\PlannerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Source\MVVM\Views\SignInPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -101,6 +122,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Source\MVVM\Views\StartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\MVVM\Views\AlarmPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LearnNote.Source.DAO;
 using LearnNote.Source.MVVM.Views;
 
 namespace LearnNote.Source.MVVM.ViewModels
@@ -7,7 +8,6 @@ namespace LearnNote.Source.MVVM.ViewModels
     public partial class SignInViewModel : ObservableObject
     {
         #region Properties
-        private string _pageName;
 
         private string? _email;
 
@@ -15,10 +15,6 @@ namespace LearnNote.Source.MVVM.ViewModels
         #endregion
 
         #region Getters & Setters
-        public string PageName
-        {
-            get => _pageName;
-        }
 
         public string? Email
         {
@@ -47,8 +43,6 @@ namespace LearnNote.Source.MVVM.ViewModels
             #if DEBUG
                 GlobalFunctionalities.Logger.Debug("Carregando página de Login");
             #endif
-            _pageName = "SignInPage";
-
         }
 
         [RelayCommand]
@@ -56,10 +50,18 @@ namespace LearnNote.Source.MVVM.ViewModels
         {
             try
             {
-                await Shell.Current.GoToAsync(nameof(SignUpPage));
+                UserDAO userDAO = new UserDAO();
+                if (userDAO.ConfirmUser(Email, Password))
+                {
+                    await Shell.Current.GoToAsync($"{nameof(HomePage)}?Email={Email}");
+                }
+                else
+                {
+                    await Shell.Current.GoToAsync(nameof(SignInPage));
+                }
 
-                #if DEBUG
-                    GlobalFunctionalities.Logger.Debug("Logando usuário");
+#if DEBUG
+                GlobalFunctionalities.Logger.Debug("Logando usuário");
                 #endif
             }
             catch (Exception ex)

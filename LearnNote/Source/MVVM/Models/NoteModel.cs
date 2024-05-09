@@ -1,8 +1,8 @@
 ﻿namespace LearnNote.Model
 {
-    public class Note
+    public class NoteModel
     {
-        #region "Variáveis"
+        #region Properties
         private uint _noteId; //(composed) vai juntar 2 IDs
         private uint _notebookId;
         private string _title;
@@ -11,7 +11,7 @@
         private DateOnly _lastEditDate;
         #endregion
 
-        #region "Propriedades"
+        #region Getters & Setters
 
         public uint NoteId 
         { 

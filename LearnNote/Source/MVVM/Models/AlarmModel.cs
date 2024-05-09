@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LearnNote.Model
+﻿namespace LearnNote.Model
 {
-    public class Alarm
+    public class AlarmModel
     {
-        #region "Propriedades"
+        #region Properties
 
         protected uint _alarmId;
         protected TimeOnly _startTime;
@@ -16,7 +10,7 @@ namespace LearnNote.Model
 
         #endregion
 
-        #region "getters e setters"
+        #region Getters & Setters
 
         public uint AlarmId
         {

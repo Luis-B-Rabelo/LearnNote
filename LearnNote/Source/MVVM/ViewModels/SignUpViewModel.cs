@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LearnNote.Source.DAO;
 using LearnNote.Source.MVVM.Views;
 
 namespace LearnNote.Source.MVVM.ViewModels
@@ -94,7 +95,16 @@ namespace LearnNote.Source.MVVM.ViewModels
         {
             try
             {
-                await Shell.Current.GoToAsync(nameof(SignInPage));
+                UserDAO userDAO = new UserDAO();
+                if (userDAO.CreateNewUser(Email, UserName, Password))
+                {
+                    await Shell.Current.GoToAsync(nameof(HomePage));
+                }
+                else
+                {
+                    await Shell.Current.GoToAsync(nameof(SignUpPage));
+                }
+
                 #if DEBUG
                     GlobalFunctionalities.Logger.Debug("Cadastrando usuário");
                 #endif

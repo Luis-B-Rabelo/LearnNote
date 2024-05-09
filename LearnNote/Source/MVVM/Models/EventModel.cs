@@ -1,15 +1,8 @@
-﻿using Java.Sql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LearnNote.Model
+﻿namespace LearnNote.Model
 {
-    public class Event
+    public class EventModel
     {
-        #region "Propriedades"
+        #region Properties
 
         private uint _eventId;
         private string _name;
@@ -19,7 +12,7 @@ namespace LearnNote.Model
 
         #endregion
 
-        #region "getters e setters"
+        #region Getters & Setters
 
         public uint EventId 
         { 

@@ -1,15 +1,8 @@
-﻿using Android.Text.Format;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LearnNote.Model
+﻿namespace LearnNote.Model
 {
-    public class Activity
+    public class ActivityModel
     {
-        #region "Propriedades"
+        #region Properties
 
         private uint _activityId;
         private string _name;
@@ -22,7 +15,7 @@ namespace LearnNote.Model
 
         #endregion
 
-        #region "getters e setters"
+        #region Getters & Setters
 
         public uint ActivityId 
         {  

@@ -7,69 +7,127 @@
              x:DataType="viewModel:SignUpViewModel"
              Shell.NavBarIsVisible="False"
              >
+    <ContentPage.Content>
+        <Frame 
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"
+        CornerRadius="0">
+            <Frame.Background>
+                <!-- StartPoint defaults to (0,0) -->
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#ff94bb"
+                              Offset="0.1" />
+                    <GradientStop Color="#fcff7b"
+                              Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition x:Name="SignUpFormColumn" Width="1*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition x:Name="SignUpFormRow" Height="16*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-    <Frame 
-    HorizontalOptions="Fill"
-    VerticalOptions="Fill"
-    CornerRadius="0">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition x:Name="SignInFormColumn" Width="1*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition x:Name="SignInFormRow" Height="16*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Frame Grid.Column="1" Grid.Row="1" BackgroundColor="#f9f9f9">
+                    <VerticalStackLayout Padding="10" Spacing="15" VerticalOptions="Center">
 
-            <Frame Grid.Column="1" Grid.Row="1">
-                <VerticalStackLayout Padding="10" Spacing="20" VerticalOptions="Center">
+                        <Label FontSize="Header" HorizontalOptions="Center" FontFamily="Forum-Regular" TextColor="#ffbd59" Margin="0,20,0,20">Cadastro</Label>
 
-                    <Label FontSize="Title" HorizontalOptions="Center" Text="{Binding PageName}"></Label>
+                        <BoxView 
+                                Color="#657489"
+                                HeightRequest="2"
+                                HorizontalOptions="Fill"
+                                Margin="0, 10, 0, 10"/>
 
-                    <BoxView 
-                            Color="Gray"
-                            HeightRequest="2"
-                            HorizontalOptions="Fill"/>
+                        <VerticalStackLayout Spacing="5">
+                            <Label FontSize="Medium" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Nome</Label>
+                            <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Entry Text="{Binding UserName}" FontSize="Medium" FontFamily="Forum-Regular" TextColor="Black"/>
+                            </Border>
+                        </VerticalStackLayout>
 
-                    <Entry Placeholder="Email" Text="{Binding UserName}"/>
+                        <VerticalStackLayout Spacing="5">
+                            <Label FontSize="Medium" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Email</Label>
+                            <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Entry Text="{Binding Email}" FontSize="Title" FontFamily="Forum-Regular" TextColor="Black"/>
+                            </Border>
+                        </VerticalStackLayout>
 
-                    <Entry Placeholder="Senha" Text="{Binding Email}"/>
+                        <VerticalStackLayout Spacing="5">
+                            <Label FontSize="Medium" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Senha</Label>
+                            <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Entry Text="{Binding Password}" IsPassword="True" FontSize="Medium" FontFamily="Forum-Regular" TextColor="Black"/>
+                            </Border>
+                        </VerticalStackLayout>
 
-                    <Entry Placeholder="Email" Text="{Binding Password}"/>
+                        <VerticalStackLayout Spacing="5">
+                            <Label FontSize="Medium" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Confirmação senha</Label>
+                            <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Entry Text="{Binding PasswordConfirm}" IsPassword="True" FontSize="Medium" FontFamily="Forum-Regular" TextColor="Black"/>
+                            </Border>
+                        </VerticalStackLayout>
 
-                    <Entry Placeholder="Senha" Text="{Binding PasswordConfirm}"/>
 
-                    <BoxView 
-                            Color="Gray"
-                            HeightRequest="2"
-                            HorizontalOptions="Fill"/>
+                        <BoxView 
+                                Color="#657489"
+                                HeightRequest="2"
+                                HorizontalOptions="Fill"
+                                Margin="0, 10, 0, 10"/>
 
-                    <Button 
-                        Text="Cadastrar"
-                        HorizontalOptions="Center">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                    Command="{Binding SignUpCommand}"
-                        />
-                        </Button.GestureRecognizers>
-                    </Button>
+                        <Button 
+                            Text="Cadastrar"
+                                    FontFamily="Forum-Regular"
+                                    FontSize="Large"
+                                    TextColor="#ffbd59"
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="#f9f9f9"
+                                    BorderWidth="1"
+                                    BorderColor="#ffbd59"
+                                    CornerRadius="20">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                        Command="{Binding SignUpCommand}"
+                            />
+                            </Button.GestureRecognizers>
+                        </Button>
 
-                    <Button 
-                        Text="Voltar para login"
-                        HorizontalOptions="Center">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                    Command="{Binding NavigateToSignInCommand}"
-                        />
-                        </Button.GestureRecognizers>
-                    </Button>
-                </VerticalStackLayout>
-            </Frame>
+                        <Button 
+                                Text="Voltar para login"
+                                FontFamily="Forum-Regular"
+                                FontSize="Medium"
+                                TextColor="#657489"
+                                HorizontalOptions="Center"
+                                BackgroundColor="#f9f9f9"
+                                BorderWidth="1"
+                                BorderColor="#657489"
+                                CornerRadius="20">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                        Command="{Binding NavigateToSignInCommand}"
+                            />
+                            </Button.GestureRecognizers>
+                        </Button>
+                    </VerticalStackLayout>
+                </Frame>
 
-        </Grid>
-    </Frame>
-
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
 </ContentPage>

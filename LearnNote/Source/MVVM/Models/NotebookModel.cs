@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LearnNote.Model
 {
-    public class Notebook
+    public class NotebookModel
     {
-        #region "Propriedades"
+        #region Properties
 
         private uint _notebookId;
         private uint _userId;
@@ -17,7 +17,7 @@ namespace LearnNote.Model
 
         #endregion
 
-        #region "getters e setters"
+        #region Getters & Setters
 
         public uint NotebookId
         {
