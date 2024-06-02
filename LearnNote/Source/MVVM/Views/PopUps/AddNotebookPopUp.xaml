@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup  
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnNote.Source.MVVM.Views.PopUps.AddNotebookPopUp"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels.PopUps"
+             x:DataType="viewModel:AddNotebookViewModel"
+             Shell.NavBarIsVisible="False">
+
+    <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59">
+        <VerticalStackLayout>
+            <Label 
+            Text="Titulo do Caderno:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            TextColor="Black"/>
+            
+            <Entry  
+            Text="{Binding Title}" 
+            FontSize="Title"
+            FontFamily="Forum-Regular" 
+            TextColor="Black"/>
+
+            <Button 
+                Text="Criar"
+                FontFamily="Forum-Regular"
+                FontSize="Title"
+                TextColor="#ffbd59"
+                HorizontalOptions="End"
+                BackgroundColor="#fff1b4"
+                BorderWidth="1"
+                BorderColor="#ffbd59"
+                CornerRadius="15">
+                <Button.GestureRecognizers>
+                    <TapGestureRecognizer 
+                        Command="{Binding AddNotebookCommand}"/>
+                </Button.GestureRecognizers>
+                
+            </Button>
+
+            <Label
+                Text="{Binding CanClose}"
+                IsEnabled="True"
+                IsVisible="Hidden"
+                PropertyChanged="CanClose"/>
+        </VerticalStackLayout>
+    </Frame>
+</toolkit:Popup>

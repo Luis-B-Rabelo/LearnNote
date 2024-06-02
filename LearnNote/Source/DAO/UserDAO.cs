@@ -1,104 +1,115 @@
 ﻿using LearnNote.Model;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
-using MySqlX.XDevAPI.Relational;
 using NLog;
 
 namespace LearnNote.Source.DAO
 {
     public class UserDAO : BaseDAO
     {
-        public UserDAO() : base() 
-        { 
-
-        }
-
-        public bool CreateNewUser(string email, string userName, string password)
+        public static bool CreateNewUser(string email, string userName, string password)
         {
-            bool result = new bool();
 
             Dictionary<string, object> user = new Dictionary<string, object>
             {
-                { "emailUser", email },
-                { "nameUser", userName },
-                { "passwordUser", password }
+                { "userEmail", email },
+                { "userName", userName },
+                { "userPassword", password }
             };
+
+            string[] specifics = { "userId" };
 
             try
             {
-                InsertInto("usertable", user);
-                MySqlDataReader rdr = SelectSpecificByProperties("usertable", user).ExecuteReader();
+                if(InsertInto("usertable", user))
+                {
+                    List<Dictionary<string, object>> elements = SelectSpecificsByProperties("usertable", specifics, user);
 
-                if (rdr.Read())
-                {
-                    if (rdr["emailUser"] is not null && rdr["passwordUser"] is not null)
-                        result = true;
-                    else
-                        result = false;
+
+                        Directory.CreateDirectory($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users\{(uint)elements.First()["userId"]}\Notebooks");
+#if DEBUG
+                        GlobalFunctionalities.Logger.ForDebugEvent()
+                            .Message("Criando diretório de armazenamento de usuário")
+                            .Property("Usuário", (uint)elements.First()["userId"])
+                            .Log();
+#endif
+                    return true;
                 }
-                else
+                else 
                 {
-                    result = false;
+                    return false;
                 }
+
+
+
             }
             catch (Exception ex) 
             { 
-                    result = false;
+                return false;
             }
-
-            return result;
         }
 
-        public bool ConfirmUser(string email, string password)
+        public static bool ConfirmUser(string email, string password)
         {
-            bool result = false;
 
             Dictionary<string, object> user = new Dictionary<string, object>
             {
-                { "emailUser", email },
-                { "passwordUser", password }
+                { "userEmail", email },
+                { "userPassword", password }
             };
 
-            MySqlDataReader rdr = SelectSpecificByProperties("usertable", user).ExecuteReader();
-            if (rdr.Read())
+            List<Dictionary<string, object>> elements = SelectWholeByProperties("usertable", user);
+
+            if (elements != null)
             {
-                if (rdr["emailUser"] is not null && rdr["passwordUser"] is not null)
-                    result = true;
-                else
-                    result = false;
+                if (!(Directory.Exists($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users\{(uint)elements.First()["userId"]}")))
+                {
+                    Directory.CreateDirectory($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users\{(uint)elements.First()["userId"]}\Notebooks");
+#if DEBUG
+                    GlobalFunctionalities.Logger.ForDebugEvent()
+                        .Message("Criando diretório de armazenamento de usuário")
+                        .Property("Usuário", (uint)elements.First()["userId"])
+                        .Log();
+#endif
+                }
+
+#if DEBUG
+                GlobalFunctionalities.Logger.ForDebugEvent()
+                    .Message("Confirmação de usuário")
+                    .Property("Email", email)
+                    .Property("Senha", password)
+                    .Log();
+#endif
+
+                return true;
             }
             else
             {
-                result = false;
-            }
-
-
 #if DEBUG
-            GlobalFunctionalities.Logger.ForDebugEvent()
-                .Message("Confirmação de usuário")
-                .Property("Email", rdr["emailUser"])
-                .Property("Email", rdr["passwordUser"])
-                .Log();
+                GlobalFunctionalities.Logger.ForDebugEvent()
+                    .Message("Erro na confirmação de usuário")
+                    .Property("Email", email)
+                    .Property("Senha", password)
+                    .Log();
 #endif
-
-            return result;
+                return false;
+            }
         }
 
-        public UserModel SelectUser(string email)
+        public static UserModel SelectUser(string email)
         {
             UserModel user = new UserModel();
 
             Dictionary<string, object> search = new Dictionary<string, object>
             {
-                { "emailUser", email },
+                { "userEmail", email },
             };
 
-            MySqlDataReader rdr = SelectSpecificByProperties("usertable", search).ExecuteReader();
-            if (rdr.Read())
-            {
-                user.UserId = (uint)rdr["userId"];
-                user.UserName = rdr["NameUser"].ToString();
-            }
+            List<Dictionary<string, object>> elements = SelectWholeByProperties("usertable", search);
+
+
+            user.UserId = (uint)elements.First()["userId"];
+            user.UserName = (string)elements.First()["userName"];
+
 
             return user;
         }

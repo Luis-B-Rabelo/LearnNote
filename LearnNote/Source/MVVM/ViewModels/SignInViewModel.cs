@@ -50,19 +50,18 @@ namespace LearnNote.Source.MVVM.ViewModels
         {
             try
             {
-                UserDAO userDAO = new UserDAO();
-                if (userDAO.ConfirmUser(Email, Password))
+                if (UserDAO.ConfirmUser(Email, Password))
                 {
-                    await Shell.Current.GoToAsync($"{nameof(HomePage)}?Email={Email}");
+#if DEBUG
+                    GlobalFunctionalities.Logger.Debug("Logando usuário");
+#endif
+                    await Shell.Current.GoToAsync($"{nameof(HomePage)}?PassEmail={Email}");
                 }
                 else
                 {
                     await Shell.Current.GoToAsync(nameof(SignInPage));
                 }
 
-#if DEBUG
-                GlobalFunctionalities.Logger.Debug("Logando usuário");
-                #endif
             }
             catch (Exception ex)
             {

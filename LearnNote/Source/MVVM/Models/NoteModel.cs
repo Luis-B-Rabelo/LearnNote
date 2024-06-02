@@ -6,47 +6,47 @@
         private uint _noteId; //(composed) vai juntar 2 IDs
         private uint _notebookId;
         private string _title;
-        private string _text;
-        private DateOnly _createDate;
-        private DateOnly _lastEditDate;
+        private string? _text;
+        private DateOnly _creationDate;
+        private DateTime _lastEditDateTime;
         #endregion
 
         #region Getters & Setters
 
         public uint NoteId 
         { 
-            get { return _noteId; }
-            set { _noteId = value; } 
+            get => _noteId; 
+            set => _noteId = value;  
         }
 
         public uint NotebookId 
         { 
-            get { return _notebookId; } 
-            set { _notebookId = value; } 
+            get => _notebookId;  
+            set => _notebookId = value;  
         }
 
         public string Title
         {
-            get { return _title; }
-            set { _title = value; }
+            get => _title; 
+            set => _title = value; 
         }
 
-        public string Text
+        public string? Text
         {
-            get { return _text; }
-            set { _text = value; }
+            get => _text;
+            set => _text = value;
         }
 
-        public DateOnly CreateDate
+        public DateOnly CreationDate
         {
-            get { return _createDate; }
-            set { _createDate = value; }
+            get => _creationDate; 
+            set => _creationDate = value; 
         }
 
-        public DateOnly LastEditDate
+        public DateTime LastEditDateTime
         {
-            get { return _lastEditDate; }
-            set { _lastEditDate = value; }
+            get => _lastEditDateTime; 
+            set => _lastEditDateTime = value; 
         }
 
         #endregion

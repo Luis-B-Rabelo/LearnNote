@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using LearnNote.Source.DAO;
+using LearnNote.Source.Core;
 using LearnNote.Source.MVVM.Views;
 
 namespace LearnNote.Source.MVVM.ViewModels
@@ -13,10 +13,16 @@ namespace LearnNote.Source.MVVM.ViewModels
             #endif
             try
             {
-                MySqlConn testConn = new MySqlConn();
-                if (!testConn.TestConnection())
+                if (!MySqlConn.TestConnection())
                     throw new Exception();
-                testConn = null;
+
+                if (!(Directory.Exists($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage")))
+                {
+                    Directory.CreateDirectory($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users");
+#if DEBUG
+                    GlobalFunctionalities.Logger.Debug("Criando diretório de armazenamento");
+#endif
+                }
 
                 Shell.Current.GoToAsync(nameof(SignInPage));
 

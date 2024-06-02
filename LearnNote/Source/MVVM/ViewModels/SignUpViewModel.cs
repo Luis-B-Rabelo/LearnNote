@@ -95,10 +95,9 @@ namespace LearnNote.Source.MVVM.ViewModels
         {
             try
             {
-                UserDAO userDAO = new UserDAO();
-                if (userDAO.CreateNewUser(Email, UserName, Password))
+                if (UserDAO.CreateNewUser(Email, UserName, Password))
                 {
-                    await Shell.Current.GoToAsync(nameof(HomePage));
+                    await Shell.Current.GoToAsync($"{nameof(HomePage)}?PassEmail={Email}");
                 }
                 else
                 {

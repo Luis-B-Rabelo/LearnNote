@@ -1,5 +1,8 @@
-﻿using LearnNote.Source.MVVM.ViewModels;
+﻿using CommunityToolkit.Maui;
+using LearnNote.Source.MVVM.ViewModels;
+using LearnNote.Source.MVVM.ViewModels.PopUps;
 using LearnNote.Source.MVVM.Views;
+using LearnNote.Source.MVVM.Views.PopUps;
 using Microsoft.Extensions.Logging;
 
 namespace LearnNote
@@ -11,6 +14,7 @@ namespace LearnNote
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -29,6 +33,9 @@ namespace LearnNote
 
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<HomeViewModel>();
+
+            builder.Services.AddSingleton<MyNotebooksPage>();
+            builder.Services.AddSingleton<MyNotebooksViewModel>();
 
             builder.Services.AddTransient<NotebookPage>();
             builder.Services.AddTransient<NotebookViewModel>();
@@ -50,6 +57,10 @@ namespace LearnNote
 
             builder.Services.AddSingleton<ConfigsPage>();
             builder.Services.AddSingleton<ConfigsViewModel>();
+
+            builder.Services.AddTransientPopup<AddNotebookPopUp, AddNotebookViewModel>();
+
+            builder.Services.AddTransientPopup<AddNotePopUp, AddNoteViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

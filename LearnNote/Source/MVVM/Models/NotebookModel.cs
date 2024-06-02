@@ -11,7 +11,7 @@ namespace LearnNote.Model
         #region Properties
 
         private uint _notebookId;
-        private uint _userId;
+        private uint _userIdFk;
         private string _title;
         private ushort _quantityNotes;
 
@@ -21,26 +21,26 @@ namespace LearnNote.Model
 
         public uint NotebookId
         {
-            get { return _notebookId; }
-            set { _notebookId = value; }
+            get => _notebookId;
+            set => _notebookId = value;
         }
 
-        public uint UserId
+        public uint UserIdFk
         {
-            get { return _userId; }
-            set { _userId = value; }
+            get => _userIdFk;
+            set => _userIdFk = value;
         }
 
         public string Title
         {
-            get { return _title; }
-            set { _title = value; }
+            get => _title; 
+            set => _title = value;
         }
 
         public ushort QuantityNotes
         {
-            get { return _quantityNotes; }
-            set { _quantityNotes = value; }
+            get => _quantityNotes;
+            set => _quantityNotes = value;
         }
 
         #endregion

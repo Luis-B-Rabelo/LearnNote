@@ -23,7 +23,14 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <Frame Grid.Column="0" BackgroundColor="#fff3c3" Padding="10"  VerticalOptions="Fill" Margin="0" CornerRadius="0" BorderColor="#fff3c3">
+                <Frame x:Name="NavBar"
+                    Grid.Column="0" 
+                    BackgroundColor="#fff3c3" 
+                    Padding="10"  
+                    VerticalOptions="Fill" 
+                    Margin="0" 
+                    CornerRadius="0" 
+                    BorderColor="#fff3c3">
                     <VerticalStackLayout Spacing="20" VerticalOptions="Center" Padding="40,0,40,0">
 
 
@@ -33,83 +40,84 @@
                             </Border.StrokeShape>
                             <Image HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0"/>
                         </Border>
-                        
-                        <Label Text="{Binding UserId}"  FontSize="Large" HorizontalOptions="Center" FontFamily="Forum-Regular" TextColor="#ffbd59"/>
-                        <Label Text="{Binding UserName}"  FontSize="Large" HorizontalOptions="Center" FontFamily="Forum-Regular" TextColor="#ffbd59" Margin="0,0,0,80" />
 
                         <Button 
-                Text="Cadernos"
-                FontFamily="Forum-Regular"
-                FontSize="Large"
-                TextColor="#ffbd59"
-                HorizontalOptions="Fill"
-                BackgroundColor="#fff1b4"
-                BorderWidth="1"
-                BorderColor="#ffbd59"
-                CornerRadius="25">
+            Text="Cadernos"
+            FontFamily="Forum-Regular"
+            FontSize="Large"
+            TextColor="#ffbd59"
+            HorizontalOptions="Fill"
+            BackgroundColor="#fff1b4"
+            BorderWidth="1"
+            BorderColor="#ffbd59"
+            CornerRadius="25">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                            Command="{Binding}"/>
+                        Command="{Binding NavigateToMyNotebooksCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
+                        
                         <Button 
-                Text="Planner"
-                FontFamily="Forum-Regular"
-                FontSize="Large"
-                TextColor="#ffbd59"
-                HorizontalOptions="Fill"
-                BackgroundColor="#fff1b4"
-                BorderWidth="1"
-                BorderColor="#ffbd59"
-                CornerRadius="25">
+            Text="Planner"
+            FontFamily="Forum-Regular"
+            FontSize="Large"
+            TextColor="#ffbd59"
+            HorizontalOptions="Fill"
+            BackgroundColor="#fff1b4"
+            BorderWidth="1"
+            BorderColor="#ffbd59"
+            CornerRadius="25">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                            Command="{Binding}"/>
+                        Command="{Binding NavigateToPlannerCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
+                        
                         <Button 
-                Text="Timer"
-                FontFamily="Forum-Regular"
-                FontSize="Large"
-                TextColor="#ffbd59"
-                HorizontalOptions="Fill"
-                BackgroundColor="#fff1b4"
-                BorderWidth="1"
-                BorderColor="#ffbd59"
-                CornerRadius="25">
+            Text="Timer"
+            FontFamily="Forum-Regular"
+            FontSize="Large"
+            TextColor="#ffbd59"
+            HorizontalOptions="Fill"
+            BackgroundColor="#fff1b4"
+            BorderWidth="1"
+            BorderColor="#ffbd59"
+            CornerRadius="25">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                            Command="{Binding}"/>
+                        Command="{Binding}"/>
                             </Button.GestureRecognizers>
                         </Button>
+                        
                         <Button 
-                Text="Calendário"
-                FontFamily="Forum-Regular"
-                FontSize="Large"
-                TextColor="#ffbd59"
-                HorizontalOptions="Fill"
-                BackgroundColor="#fff1b4"
-                BorderWidth="1"
-                BorderColor="#ffbd59"
-                CornerRadius="25">
+            Text="Calendário"
+            FontFamily="Forum-Regular"
+            FontSize="Large"
+            TextColor="#ffbd59"
+            HorizontalOptions="Fill"
+            BackgroundColor="#fff1b4"
+            BorderWidth="1"
+            BorderColor="#ffbd59"
+            CornerRadius="25">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                            Command="{Binding}"/>
+                        Command="{Binding NavigateToCalendarCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
+                        
                         <Button 
-                Text="Conquistas"
-                FontFamily="Forum-Regular"
-                FontSize="Large"
-                TextColor="#ffbd59"
-                HorizontalOptions="Fill"
-                BackgroundColor="#fff1b4"
-                BorderWidth="1"
-                BorderColor="#ffbd59"
-                CornerRadius="25">
+            Text="Conquistas"
+            FontFamily="Forum-Regular"
+            FontSize="Large"
+            TextColor="#ffbd59"
+            HorizontalOptions="Fill"
+            BackgroundColor="#fff1b4"
+            BorderWidth="1"
+            BorderColor="#ffbd59"
+            CornerRadius="25">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                            Command="{Binding}"/>
+                        Command="{Binding}"/>
                             </Button.GestureRecognizers>
                         </Button>
 

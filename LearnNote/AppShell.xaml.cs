@@ -14,6 +14,8 @@ namespace LearnNote
 
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
 
+            Routing.RegisterRoute(nameof(MyNotebooksPage), typeof(MyNotebooksPage));
+
             Routing.RegisterRoute(nameof(NotebookPage), typeof(NotebookPage));
 
             Routing.RegisterRoute(nameof(NotePage), typeof(NotePage));
