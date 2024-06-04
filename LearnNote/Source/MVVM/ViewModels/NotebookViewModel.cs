@@ -107,13 +107,13 @@ namespace LearnNote.Source.MVVM.ViewModels
         [RelayCommand]
         public async Task DisplayAddNotePopUp()
         {
-            _popupService.ShowPopup<AddNoteViewModel>(onPresenting: viewModel => { viewModel.UserIdFk = UserId; viewModel.NotebookIdFk = NotebookId; viewModel.QntNotes = QntNotes; });
+            _popupService.ShowPopup<AddNoteViewModel>(onPresenting: viewModel => { viewModel.UserIdFk = UserId; viewModel.NotebookIdFk = NotebookId; });
         }
 
         [RelayCommand]
         public async Task DisplayDeleteNotebookPopUp()
         {
-            _popupService.ShowPopup<DeleteNotebookViewModel>(onPresenting: viewModel => { viewModel.Title = NotebookTitle; viewModel.UserIdFk = UserId; viewModel.NotebookId = NotebookId;  });
+            _popupService.ShowPopup<DeleteNotebookViewModel>(onPresenting: viewModel => { viewModel.NotebookTitle = _notebookTitle; viewModel.UserIdFk = UserId; viewModel.NotebookId = NotebookId;  });
         }
     }
 }

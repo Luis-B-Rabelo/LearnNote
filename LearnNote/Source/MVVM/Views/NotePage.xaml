@@ -237,15 +237,24 @@
                                 <ImageButton
                                     x:Name="SaveButton"
                                         Source="save.png"
-                                        BackgroundColor="#fff3c3"
-                                        Clicked="SaveButtonClicked">
+                                        BackgroundColor="#fff3c3">
 
                                     <ImageButton.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding SaveNoteCommand}"/>
                                     </ImageButton.GestureRecognizers>
                                 </ImageButton>
-                                
+                                <ImageButton
+                                    x:Name="DeleteButton"
+                                        Source="trash.png"
+                                        BackgroundColor="#fff3c3">
+
+                                    <ImageButton.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding DeleteNoteCommand}"/>
+                                    </ImageButton.GestureRecognizers>
+                                </ImageButton>
+
 
                             </HorizontalStackLayout>
                         </Border>

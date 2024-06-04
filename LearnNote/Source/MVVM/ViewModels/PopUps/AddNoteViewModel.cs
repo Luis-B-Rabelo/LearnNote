@@ -17,8 +17,6 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
 
         private string _title;
 
-        public byte QntNotes { get; set; }
-
         private uint _notebookIdFk;
 
         private uint _userIdFk;
@@ -62,7 +60,7 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         public async Task AddNote()
         {
             uint noteId;
-            noteId = NoteDAO.CreateNote(Title, NotebookIdFk, UserIdFk, QntNotes);
+            noteId = NoteDAO.CreateNote(Title, NotebookIdFk, UserIdFk);
 
             if (noteId != 0)
             {

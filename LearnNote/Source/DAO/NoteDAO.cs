@@ -8,7 +8,7 @@ namespace LearnNote.Source.DAO
     public  class NoteDAO : BaseDAO
     {
 
-        public static uint CreateNote(string title, uint notebookIdFk, uint userIdFk, byte noteQnt)
+        public static uint CreateNote(string title, uint notebookIdFk, uint userIdFk)
         {
             Dictionary<string, object> note = new Dictionary<string, object>
             {
@@ -51,9 +51,11 @@ namespace LearnNote.Source.DAO
                             .Log();
 #endif
 
-                        Dictionary<string, object> updateQntNotes = new Dictionary<string, object>
+                        string[] countNotes = { "noteId" };
+
+                        noteSearch = new Dictionary<string, object>
                         {
-                            { "notebookQntNotes", noteQnt+1 }
+                            { "notebookIdFk", notebookIdFk }
                         };
 
                         Dictionary<string, object> notebookSearch = new Dictionary<string, object>
@@ -62,9 +64,26 @@ namespace LearnNote.Source.DAO
                         };
 
 
+                        List<Dictionary<string, object>> listNotes = SelectSpecificsByProperties("notetable", countNotes, noteSearch);
+
+                        byte qntNotes;
+
+                        if (listNotes != null)
+                        {
+                            qntNotes = (byte)listNotes.Count();
+                        }
+                        else
+                        {
+                            qntNotes= 0;
+                        }
+
+                        Dictionary<string, object> updateQntNotes = new Dictionary<string, object>
+                        {
+                            { "notebookQntNotes", qntNotes }
+                        };
+
                         UpdateByProperties("notebooktable", updateQntNotes, notebookSearch);
 
-                        Thread.Sleep(1000);
                         return (uint)elements.First()["noteId"];
                     }
                     else
@@ -84,7 +103,7 @@ namespace LearnNote.Source.DAO
             }
         }
 
-        public static bool DeleteNote(uint noteId, uint notebookIdFk, uint userIdFk, byte noteQnt)
+        public static bool DeleteNote(uint noteId, uint notebookIdFk, uint userIdFk)
         {
             Dictionary<string, object> note = new Dictionary<string, object>
             {
@@ -108,9 +127,11 @@ namespace LearnNote.Source.DAO
                         .Log();
 #endif
 
-                    Dictionary<string, object> updateQntNotes = new Dictionary<string, object>
+                    string[] countNotes = { "noteId" };
+
+                    Dictionary<string, object> noteSearch = new Dictionary<string, object>
                     {
-                        { "notebookQntNotes", noteQnt-1 }
+                        { "notebookIdFk", notebookIdFk }
                     };
 
                     Dictionary<string, object> notebookSearch = new Dictionary<string, object>
@@ -118,6 +139,23 @@ namespace LearnNote.Source.DAO
                         { "notebookId", notebookIdFk }
                     };
 
+                    List<Dictionary<string, object>> listNotes = SelectSpecificsByProperties("notetable", countNotes, noteSearch);
+
+                    byte qntNotes;
+
+                    if (listNotes != null)
+                    {
+                        qntNotes = (byte)listNotes.Count();
+                    }
+                    else
+                    {
+                        qntNotes = 0;
+                    }
+
+                    Dictionary<string, object> updateQntNotes = new Dictionary<string, object>
+                    {
+                        { "notebookQntNotes", qntNotes }
+                    };
 
                     UpdateByProperties("notebooktable", updateQntNotes, notebookSearch);
 

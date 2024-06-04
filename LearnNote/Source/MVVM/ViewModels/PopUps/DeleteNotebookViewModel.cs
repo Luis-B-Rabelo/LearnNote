@@ -13,7 +13,7 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #region Properties
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private string _title;
+        private string _notebookTitle;
 
         private uint _notebookId;
 
@@ -22,13 +22,13 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #endregion
 
         #region Getters & Setters
-        public string Title
+        public string NotebookTitle
         {
-            get => _title;
+            get => _notebookTitle;
             set
             {
-                _title = value;
-                OnPropertyChanged("Title");
+                _notebookTitle = value;
+                OnPropertyChanged();
             }
         }
 

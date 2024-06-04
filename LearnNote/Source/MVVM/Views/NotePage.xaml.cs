@@ -15,11 +15,4 @@ public partial class NotePage : ContentPage
     {
         NoteText.FontSize = double.Parse(NoteFontSize.Text);
     }
-
-    private void SaveButtonClicked(object sender, EventArgs e)
-    {
-        SaveButton.Margin += 20;
-        Thread.Sleep(500);
-        SaveButton.Margin -= 20;
-    }
 }

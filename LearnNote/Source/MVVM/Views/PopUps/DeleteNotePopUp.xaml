@@ -12,45 +12,31 @@
 
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
         <VerticalStackLayout
-            VerticalOptions="Center" 
-            HorizontalOptions="Center">
+          VerticalOptions="Center" 
+          HorizontalOptions="Center">
 
             <Label 
-            Text="Titulo do Caderno:"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            FontSize="50" 
-            FontFamily="Forum-Regular"
-            TextColor="Black"/>
-
-            <Border
-                Stroke="#657489"
-                Margin="0,20,0,20"
-                Padding="10">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="35"/>
-                </Border.StrokeShape>
-                <Entry  
-                Text="{Binding}" 
-                FontSize="50" 
-                FontFamily="Forum-Regular"
-                TextColor="#575757"
-/>
-            </Border>
+          Text="{Binding NoteTitle}"
+          VerticalOptions="Center" 
+          HorizontalOptions="Center" 
+          FontSize="50" 
+          FontFamily="Forum-Regular"
+          TextColor="Black"
+          Margin="0,0,0,25"/>
 
             <Button 
-                Text="Criar"
-                FontFamily="Forum-Regular"
-                FontSize="35"
-                TextColor="#ffbd59"
-                HorizontalOptions="End"
-                BackgroundColor="#fff1b4"
-                BorderWidth="1"
-                BorderColor="#ffbd59"
-                CornerRadius="40">
+              Text="Deletar"
+              FontFamily="Forum-Regular"
+              FontSize="35"
+              TextColor="#ffbd59"
+              HorizontalOptions="End"
+              BackgroundColor="#fff1b4"
+              BorderWidth="1"
+              BorderColor="#ffbd59"
+              CornerRadius="40">
                 <Button.GestureRecognizers>
                     <TapGestureRecognizer 
-                        Command="{Binding }"/>
+                      Command="{Binding DeleteNoteCommand}"/>
                 </Button.GestureRecognizers>
 
             </Button>

@@ -1,13 +1,17 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.Input;
 using LearnNote.Model;
 using LearnNote.Source.Core;
 using LearnNote.Source.DAO;
+using LearnNote.Source.MVVM.ViewModels.PopUps;
 using NLog;
 
 namespace LearnNote.Source.MVVM.ViewModels
 {
     public partial class NoteViewModel : NavBar, IQueryAttributable
     {
+        private readonly IPopupService _popupService;
+
         private uint _noteId;
 
         private uint _notebookId;
@@ -40,6 +44,10 @@ namespace LearnNote.Source.MVVM.ViewModels
             }
         }
 
+        public NoteViewModel(IPopupService popupService)
+        {
+            _popupService = popupService;
+        }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -91,6 +99,11 @@ namespace LearnNote.Source.MVVM.ViewModels
 
         }
 
+        [RelayCommand]
+        public async Task DeleteNote()
+        {
+            _popupService.ShowPopup<DeleteNoteViewModel>(onPresenting: viewModel => {viewModel.NoteId = _noteId; viewModel.NoteTitle = _title; viewModel.UserIdFk = UserId; viewModel.NotebookId = _notebookId; });
+        }
 
     }
 }

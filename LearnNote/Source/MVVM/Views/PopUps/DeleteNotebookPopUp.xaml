@@ -16,12 +16,13 @@
             HorizontalOptions="Center">
 
             <Label 
-            Text="{Binding Title}" 
+            Text="{Binding NotebookTitle}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             FontSize="50" 
             FontFamily="Forum-Regular"
-            TextColor="#657489"/>
+            TextColor="Black"
+            Margin="0,0,0,25"/>
 
             <Button 
                 Text="Deletar"
