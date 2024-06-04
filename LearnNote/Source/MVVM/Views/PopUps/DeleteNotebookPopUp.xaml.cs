@@ -1,14 +1,11 @@
 using CommunityToolkit.Maui.Views;
 using LearnNote.Source.MVVM.ViewModels.PopUps;
-using System.Runtime.CompilerServices;
 
 namespace LearnNote.Source.MVVM.Views.PopUps;
 
-public partial class AddNotebookPopUp : Popup
+public partial class DeleteNotebookPopUp : Popup
 {
-
-
-	public AddNotebookPopUp(AddNotebookViewModel vm)
+	public DeleteNotebookPopUp(DeleteNotebookViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

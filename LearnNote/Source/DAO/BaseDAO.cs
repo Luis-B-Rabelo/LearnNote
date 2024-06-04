@@ -1,5 +1,6 @@
 ﻿using LearnNote.Source.Core;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using NLog;
 
 namespace LearnNote.Source.DAO
@@ -361,6 +362,223 @@ namespace LearnNote.Source.DAO
                 rdr.Close();
                 conn.Close();
                 
+#if DEBUG
+                GlobalFunctionalities.Logger.ForDebugEvent()
+                    .Message("Selecionando elemento/s")
+                    .Property("Tabela", table)
+                    .Property("Colunas de pesquisa", properties.Keys)
+                    .Property("Valores de pesquisa", properties.Values)
+                    .Property("QntRetorno", elements.Count)
+                    .Property("Retorno", elements)
+                    .Log();
+#endif
+                if (elements.Count > 0)
+                    return elements;
+                else
+                    return null;
+
+            }
+            catch (Exception ex)
+            {
+                GlobalFunctionalities.Logger.ForErrorEvent()
+                    .Message("Problema para selecionar elemento/s")
+                    .Property("Tabela", table)
+                    .Property("Colunas de pesquisa", properties.Keys)
+                    .Property("Valores de pesquisa", properties.Values)
+                    .Exception(ex)
+                    .Log();
+
+                return null;
+            }
+
+        }
+
+        protected static List<Dictionary<string, object>> SelectSomeByProperties(string table, Dictionary<string, object> properties, uint quantity)
+        {
+            try
+            {
+                MySqlCommand? cmd;
+                Dictionary<string, object> element = new Dictionary<string, object>();
+                List<Dictionary<string, object>> elements = new List<Dictionary<string, object>>();
+
+                string where = string.Empty;
+
+                if (properties.Count > 1)
+                {
+                    byte counter = 0;
+                    foreach (KeyValuePair<string, object> property in properties)
+                    {
+                        counter++;
+                        if (counter < properties.Count)
+                        {
+                            where += $"{property.Key} = '{property.Value}' AND ";
+                        }
+                        else
+                        {
+                            where += $"{property.Key} = '{property.Value}'";
+                        }
+
+                    }
+                }
+                else
+                {
+                    where = $"{properties.ElementAt(0).Key} = '{properties.ElementAt(0).Value}'";
+                }
+
+                string sql = $"SELECT * FROM {table} WHERE {where} LIMIT {quantity};";
+
+                MySqlConnection conn = MySqlConn.OpenConn();
+
+                cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+
+                    for (int i = 0; i < rdr.FieldCount; i++)
+                    {
+                        element.Add(rdr.GetName(i), rdr.GetValue(i));
+                    }
+
+                    elements.Add(element.ToDictionary());
+                    element.Clear();
+                }
+
+                rdr.Close();
+                conn.Close();
+
+#if DEBUG
+                GlobalFunctionalities.Logger.ForDebugEvent()
+                    .Message("Selecionando elemento/s")
+                    .Property("Tabela", table)
+                    .Property("Colunas de pesquisa", properties.Keys)
+                    .Property("Valores de pesquisa", properties.Values)
+                    .Property("QntRetorno", elements.Count)
+                    .Property("Retorno", elements)
+                    .Log();
+#endif
+                if (elements.Count > 0)
+                    return elements;
+                else
+                    return null;
+
+            }
+            catch (Exception ex)
+            {
+                GlobalFunctionalities.Logger.ForErrorEvent()
+                    .Message("Problema para selecionar elemento/s")
+                    .Property("Tabela", table)
+                    .Property("Colunas de pesquisa", properties.Keys)
+                    .Property("Valores de pesquisa", properties.Values)
+                    .Exception(ex)
+                    .Log();
+
+                return null;
+            }
+
+        }
+
+        protected static List<Dictionary<string, object>> SelectSomeOrdenedByProperties(string table, Dictionary<string, object> properties, uint quantity, Dictionary<string, bool> orders)
+        {
+            try
+            {
+                MySqlCommand? cmd;
+                Dictionary<string, object> element = new Dictionary<string, object>();
+                List<Dictionary<string, object>> elements = new List<Dictionary<string, object>>();
+
+                byte counter;
+
+                string where = string.Empty;
+                string orderedBy = string.Empty;
+
+                if (properties.Count > 1)
+                {
+                    counter = 0;
+                    foreach (KeyValuePair<string, object> property in properties)
+                    {
+                        counter++;
+                        if (counter < properties.Count)
+                        {
+                            where += $"{property.Key} = '{property.Value}' AND ";
+                        }
+                        else
+                        {
+                            where += $"{property.Key} = '{property.Value}'";
+                        }
+
+                    }
+                }
+                else
+                {
+                    where = $"{properties.First().Key} = '{properties.First().Value}'";
+                }
+
+                if (orders.Count > 1)
+                {
+                    counter = 0;
+                    foreach (KeyValuePair<string, bool> order in orders)
+                    {
+                        counter++;
+                        if (counter < orders.Count)
+                        {
+                            if (order.Value)
+                            {
+                                orderedBy += $"{order.Key} ASC, ";
+                            }
+                            else
+                            {
+                                orderedBy += $"{order.Key} DESC, ";
+                            }
+                        }
+                        else
+                        {
+                            if (order.Value)
+                            {
+                                orderedBy += $"{order.Key} ASC";
+                            }
+                            else
+                            {
+                                orderedBy += $"{order.Key} DESC";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (orders.First().Value)
+                    {
+                        orderedBy += $"{orders.First().Key} ASC";
+                    }
+                    else
+                    {
+                        orderedBy += $"{orders.First().Key} DESC";
+                    }
+                }
+
+                string sql = $"SELECT * FROM {table} WHERE {where} ORDER BY {orderedBy} LIMIT {quantity};";
+
+                MySqlConnection conn = MySqlConn.OpenConn();
+
+                cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+
+                    for (int i = 0; i < rdr.FieldCount; i++)
+                    {
+                        element.Add(rdr.GetName(i), rdr.GetValue(i));
+                    }
+
+                    elements.Add(element.ToDictionary());
+                    element.Clear();
+                }
+
+                rdr.Close();
+                conn.Close();
+
 #if DEBUG
                 GlobalFunctionalities.Logger.ForDebugEvent()
                     .Message("Selecionando elemento/s")

@@ -30,7 +30,7 @@ namespace LearnNote.Source.MVVM.ViewModels
 
         private uint _notebookId;
 
-        private uint _qntNotes;
+        private byte _qntNotes;
 
         public uint NotebookId
         {
@@ -42,7 +42,7 @@ namespace LearnNote.Source.MVVM.ViewModels
             }
         }
 
-        public uint QntNotes
+        public byte QntNotes
         {
             get => _qntNotes;
             private set
@@ -101,13 +101,19 @@ namespace LearnNote.Source.MVVM.ViewModels
         [RelayCommand]
         public async Task OpenNote(uint noteId)
         {
-            await Shell.Current.GoToAsync($"{nameof(NotePage)}?PassNoteId={noteId}&PassUserId={UserId}");
+            await Shell.Current.GoToAsync($"{nameof(NotePage)}?PassNoteId={noteId}");
         }
 
         [RelayCommand]
         public async Task DisplayAddNotePopUp()
         {
-            _popupService.ShowPopup<AddNoteViewModel>(onPresenting: viewModel => { viewModel.UserIdFk = UserId; viewModel.NotebookIdFk = NotebookId; });
+            _popupService.ShowPopup<AddNoteViewModel>(onPresenting: viewModel => { viewModel.UserIdFk = UserId; viewModel.NotebookIdFk = NotebookId; viewModel.QntNotes = QntNotes; });
+        }
+
+        [RelayCommand]
+        public async Task DisplayDeleteNotebookPopUp()
+        {
+            _popupService.ShowPopup<DeleteNotebookViewModel>(onPresenting: viewModel => { viewModel.Title = NotebookTitle; viewModel.UserIdFk = UserId; viewModel.NotebookId = NotebookId;  });
         }
     }
 }

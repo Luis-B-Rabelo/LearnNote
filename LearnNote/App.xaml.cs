@@ -11,6 +11,9 @@
         {
             var window = base.CreateWindow(activationState);
 
+            window.Width = 1280;
+            window.Height = 720;
+
             window.MinimumWidth = 1280;
             window.MinimumHeight = 720;
 

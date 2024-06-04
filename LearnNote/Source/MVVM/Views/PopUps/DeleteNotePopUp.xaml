@@ -2,12 +2,12 @@
 <toolkit:Popup  
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnNote.Source.MVVM.Views.PopUps.AddNotePopUp"
+             x:Class="LearnNote.Source.MVVM.Views.PopUps.DeleteNotePopUp"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels.PopUps"
-             x:DataType="viewModel:AddNoteViewModel"
+             x:DataType="viewModel:DeleteNoteViewModel"
              Shell.NavBarIsVisible="False"
-            Size="640,360"
+             Size="640,360"
             Color="Transparent">
 
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
@@ -16,7 +16,7 @@
             HorizontalOptions="Center">
 
             <Label 
-            Text="Titulo da Anotação:"
+            Text="Titulo do Caderno:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             FontSize="50" 
@@ -31,7 +31,7 @@
                     <RoundRectangle CornerRadius="35"/>
                 </Border.StrokeShape>
                 <Entry  
-                Text="{Binding Title}" 
+                Text="{Binding}" 
                 FontSize="50" 
                 FontFamily="Forum-Regular"
                 TextColor="#575757"
@@ -50,7 +50,7 @@
                 CornerRadius="40">
                 <Button.GestureRecognizers>
                     <TapGestureRecognizer 
-                        Command="{Binding AddNoteCommand}"/>
+                        Command="{Binding }"/>
                 </Button.GestureRecognizers>
 
             </Button>

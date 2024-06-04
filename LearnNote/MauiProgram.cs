@@ -60,7 +60,13 @@ namespace LearnNote
 
             builder.Services.AddTransientPopup<AddNotebookPopUp, AddNotebookViewModel>();
 
+            builder.Services.AddTransientPopup<DeleteNotebookPopUp, DeleteNotebookViewModel>();
+
             builder.Services.AddTransientPopup<AddNotePopUp, AddNoteViewModel>();
+
+            builder.Services.AddTransientPopup<DeleteNotePopUp, DeleteNoteViewModel>();
+
+            builder.Services.AddTransientPopup<LoginErrorPopUp, LoginErrorViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -79,6 +79,41 @@ namespace LearnNote.Source.DAO
             }
         }
 
+        public static bool DeleteNotebook(uint notebookId, uint userIdFk)
+        {
+#if DEBUG
+            GlobalFunctionalities.Logger.Debug("Começando processo de deleção de caderno");
+#endif
+
+            Dictionary<string, object> notebook = new Dictionary<string, object>
+            {
+                { "notebookId", notebookId }
+            };
+
+            try
+            {
+                if (DeleteByProperties("notebooktable", notebook))
+                {
+#if DEBUG
+                    GlobalFunctionalities.Logger.Debug("Caderno deletado no BD");
+#endif
+
+                    Directory.Delete($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users\{userIdFk}\Notebooks\{notebookId}", true);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static NotebookModel SelectNotebook(uint notebookId)
         {
             NotebookModel notebook = new NotebookModel();
@@ -96,7 +131,7 @@ namespace LearnNote.Source.DAO
                 {
                     NotebookId = notebookId,
                     Title = (string)elements.First()["notebookTitle"],
-                    QuantityNotes = (ushort)elements.First()["notebookQntNotes"],
+                    QuantityNotes = (byte)elements.First()["notebookQntNotes"],
                     UserIdFk = (uint)elements.First()["userIdFk"]
                 };
             }
@@ -123,7 +158,7 @@ namespace LearnNote.Source.DAO
                     {
                         NotebookId = (uint)element["notebookId"],
                         Title = (string)element["notebookTitle"],
-                        QuantityNotes = (ushort)element["notebookQntNotes"],
+                        QuantityNotes = (byte)element["notebookQntNotes"],
                         UserIdFk = userIdFk
                     });
                 }
@@ -132,6 +167,34 @@ namespace LearnNote.Source.DAO
             return notebooks;
         }
 
-        
+        public static ObservableCollection<NotebookModel> Select4UserNotebooks(uint userIdFk)
+        {
+            ObservableCollection<NotebookModel> notebooks = new ObservableCollection<NotebookModel>();
+
+            Dictionary<string, object> search = new Dictionary<string, object>
+            {
+                { "userIdFk", userIdFk }
+            };
+
+            List<Dictionary<string, object>> elements = SelectSomeByProperties("notebooktable", search, 4);
+
+            if (elements != null)
+            {
+                foreach (Dictionary<string, object> element in elements)
+                {
+                    notebooks.Add(new NotebookModel
+                    {
+                        NotebookId = (uint)element["notebookId"],
+                        Title = (string)element["notebookTitle"],
+                        QuantityNotes = (byte)element["notebookQntNotes"],
+                        UserIdFk = userIdFk
+                    });
+                }
+            }
+
+            return notebooks;
+        }
+
+
     }
 }

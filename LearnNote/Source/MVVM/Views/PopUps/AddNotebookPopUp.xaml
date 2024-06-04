@@ -6,44 +6,54 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels.PopUps"
              x:DataType="viewModel:AddNotebookViewModel"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Size="640,360"
+            Color="Transparent">
 
-    <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59">
-        <VerticalStackLayout>
+    <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
+        <VerticalStackLayout
+            VerticalOptions="Center" 
+            HorizontalOptions="Center">
+            
             <Label 
             Text="Titulo do Caderno:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
+            FontSize="50" 
+            FontFamily="Forum-Regular"
             TextColor="Black"/>
-            
-            <Entry  
-            Text="{Binding Title}" 
-            FontSize="Title"
-            FontFamily="Forum-Regular" 
-            TextColor="Black"/>
+
+            <Border
+                Stroke="#657489"
+                Margin="0,20,0,20"
+                Padding="10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="35"/>
+                </Border.StrokeShape>
+                <Entry  
+                Text="{Binding Title}" 
+                FontSize="50" 
+                FontFamily="Forum-Regular"
+                TextColor="#575757"
+/>
+            </Border>
 
             <Button 
                 Text="Criar"
                 FontFamily="Forum-Regular"
-                FontSize="Title"
+                FontSize="35"
                 TextColor="#ffbd59"
                 HorizontalOptions="End"
                 BackgroundColor="#fff1b4"
                 BorderWidth="1"
                 BorderColor="#ffbd59"
-                CornerRadius="15">
+                CornerRadius="40">
                 <Button.GestureRecognizers>
                     <TapGestureRecognizer 
                         Command="{Binding AddNotebookCommand}"/>
                 </Button.GestureRecognizers>
-                
-            </Button>
 
-            <Label
-                Text="{Binding CanClose}"
-                IsEnabled="True"
-                IsVisible="Hidden"
-                PropertyChanged="CanClose"/>
+            </Button>
         </VerticalStackLayout>
     </Frame>
 </toolkit:Popup>

@@ -6,8 +6,12 @@
              xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels"
              x:DataType="viewModel:SignInViewModel"
              Shell.NavBarIsVisible="False"
-             MinimumWidthRequest="800"
-             MinimumHeightRequest="600">
+             MinimumWidthRequest="1280"
+             MinimumHeightRequest="720">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
 
     <ContentPage.Content>
         <Frame 
@@ -28,7 +32,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition x:Name="SignInFormColumn" Width="1.1*"/>
+                    <ColumnDefinition x:Name="SignInFormColumn" Width="1*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -43,62 +47,69 @@
                     <Grid Padding="50,0,50,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
 
 
-                        <VerticalStackLayout Grid.Row="0" VerticalOptions="Center">
+                        <VerticalStackLayout Grid.Row="0" VerticalOptions="End">
 
                             <Label FontSize="50" HorizontalOptions="Center" FontFamily="Forum-Regular" TextColor="#ffbd59">Login</Label>
-
                             <BoxView 
                             Color="#657489"
-                            HeightRequest="2"
+                            VerticalOptions="Start"
                             HorizontalOptions="Fill"
-                            Margin="0,10,0,0"/>
-
+                            HeightRequest="1"
+                            Margin="0,5,0,0"/>
                         </VerticalStackLayout>
 
-                        <VerticalStackLayout Grid.Row="1">
-                        <VerticalStackLayout Spacing="5">
-                                <Label FontSize="40" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59" >Email</Label>
+                        <VerticalStackLayout Grid.Row="1" Margin="0" VerticalOptions="Center" Spacing="50" >
+
+
+
+                            <VerticalStackLayout Spacing="5" Margin="0">
+                                <Label x:Name="EmailLabel" TextDecorations="None" FontSize="40" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59" >Email</Label>
                                 <Border Stroke="LightGray" StrokeThickness="2" Margin="0">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
-                                    <Entry  Text="{Binding Email}" FontSize="30" FontFamily="Forum-Regular" TextColor="Black" />
+                                    <Entry x:Name="EmailEntry" Text="{Binding Email}" FontSize="30" FontFamily="Forum-Regular" TextColor="Black" TextChanged="EmailEntryChanged"/>
                                 </Border>
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Spacing="5">
-                                <Label FontSize="40" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Senha</Label>
+                            <VerticalStackLayout Spacing="5" Margin="0">
+                                <Label x:Name="PasswordLabel" TextDecorations="None" FontSize="40" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Senha</Label>
                                 <Border Stroke="LightGray" StrokeThickness="2" Margin="0">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
-                                    <Entry Text="{Binding Password}" IsPassword="True" FontSize="20"  FontFamily="Forum-Regular" TextColor="Black" />
+                                    <Entry x:Name="PasswordEntry" Text="{Binding Password}" IsPassword="True" FontSize="20"  FontFamily="Forum-Regular" TextColor="Black" TextChanged="PasswordEntryChanged"/>
                                 </Border>
                             </VerticalStackLayout>
-                        
+
+
+
                         </VerticalStackLayout>
-                        <VerticalStackLayout Grid.Row="2">
+
+                        <VerticalStackLayout Grid.Row="2" Margin="0" VerticalOptions="Start">
                             <BoxView 
                             Color="#657489"
-                            HeightRequest="2"
+                            HeightRequest="1"
+                            VerticalOptions="End"
                             HorizontalOptions="Fill"
-                            Margin="0"/>
-
+                            Margin="0,0,0,25"/>
                             <Button 
+                            x:Name="SignInButton"
                             Text="Entrar"
                             FontFamily="Forum-Regular"
-                            FontSize="Large"
+                            FontSize="35"
                             TextColor="#ffbd59"
                             HorizontalOptions="Center"
                             BackgroundColor="#f9f9f9"
                             BorderWidth="1"
                             BorderColor="#ffbd59"
-                            CornerRadius="20">
+                            CornerRadius="25"
+                            Padding="20,5,20,5">
                                 <Button.GestureRecognizers>
                                     <TapGestureRecognizer
                                     Command="{Binding SignInCommand}"/>
@@ -112,9 +123,7 @@
                             TextColor="#657489"
                             HorizontalOptions="Center"
                             BackgroundColor="#f9f9f9"
-                            BorderWidth="1"
-                            BorderColor="#657489"
-                            CornerRadius="20">
+                            Margin="0,5,0,0">
                                 <Button.GestureRecognizers>
                                     <TapGestureRecognizer 
                                     Command="{Binding NavigateToSignUpCommand}"/>

@@ -6,7 +6,7 @@ namespace LearnNote.Source.DAO
 {
     public class UserDAO : BaseDAO
     {
-        public static bool CreateNewUser(string email, string userName, string password)
+        public static byte CreateNewUser(string email, string userName, string password)
         {
 
             Dictionary<string, object> user = new Dictionary<string, object>
@@ -16,14 +16,24 @@ namespace LearnNote.Source.DAO
                 { "userPassword", password }
             };
 
-            string[] specifics = { "userId" };
+            Dictionary<string, object> emailSearch = new Dictionary<string, object>
+            {
+                { "userEmail", email },
+            };
 
+            string[] specifics1 = { "userId" };
+
+            string[] specifics2 = { "userEmail" };
+
+            List<Dictionary<string, object>> elements = new();
             try
             {
-                if(InsertInto("usertable", user))
+                elements = SelectSpecificsByProperties("usertable", specifics1, emailSearch);
+                if (elements == null)
                 {
-                    List<Dictionary<string, object>> elements = SelectSpecificsByProperties("usertable", specifics, user);
-
+                    if (InsertInto("usertable", user))
+                    {
+                        elements = SelectSpecificsByProperties("usertable", specifics1, user);
 
                         Directory.CreateDirectory($@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users\{(uint)elements.First()["userId"]}\Notebooks");
 #if DEBUG
@@ -32,19 +42,23 @@ namespace LearnNote.Source.DAO
                             .Property("Usuário", (uint)elements.First()["userId"])
                             .Log();
 #endif
-                    return true;
+                        return 1;
+                    }
+                    else
+                    {
+                        return 3;
+                    }
                 }
                 else 
-                {
-                    return false;
+                { 
+                    return 2; 
                 }
-
 
 
             }
             catch (Exception ex) 
             { 
-                return false;
+                return 3;
             }
         }
 

@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearnNote.Source.DAO;
+using LearnNote.Source.MVVM.ViewModels.PopUps;
 using LearnNote.Source.MVVM.Views;
 
 namespace LearnNote.Source.MVVM.ViewModels
@@ -8,7 +10,7 @@ namespace LearnNote.Source.MVVM.ViewModels
     public partial class SignUpViewModel : ObservableObject
     {
         #region Properties
-        private string _pageName;
+        private readonly IPopupService _popupService;
 
         private string? _userName;
 
@@ -20,10 +22,6 @@ namespace LearnNote.Source.MVVM.ViewModels
         #endregion
 
         #region Getters & Setters
-        public string PageName
-        {
-            get => _pageName;
-        }
 
         public string? UserName
         {
@@ -66,12 +64,13 @@ namespace LearnNote.Source.MVVM.ViewModels
         } 
         #endregion
 
-        public SignUpViewModel()
+        public SignUpViewModel(IPopupService popupService)
         {
             #if DEBUG
                 GlobalFunctionalities.Logger.Debug("Carregando página de Cadastro");
-            #endif
-            _pageName = "SignUpPage";
+#endif
+
+            _popupService = popupService;
         }
 
         [RelayCommand]
@@ -95,22 +94,30 @@ namespace LearnNote.Source.MVVM.ViewModels
         {
             try
             {
-                if (UserDAO.CreateNewUser(Email, UserName, Password))
+                switch (UserDAO.CreateNewUser(Email, UserName, Password))
                 {
-                    await Shell.Current.GoToAsync($"{nameof(HomePage)}?PassEmail={Email}");
-                }
-                else
-                {
-                    await Shell.Current.GoToAsync(nameof(SignUpPage));
+                    case 1:
+#if DEBUG
+                        GlobalFunctionalities.Logger.Debug("Cadastrando usuário");
+#endif
+                        await Shell.Current.GoToAsync($"{nameof(HomePage)}?PassEmail={Email}");
+                        break;
+                    case 2:
+                        await Shell.Current.GoToAsync(nameof(SignUpPage));
+                        _popupService.ShowPopup<LoginErrorViewModel>(onPresenting: viewModel => viewModel.Error = "Email já cadastrado");
+                        break; 
+                    case 3:
+                        await Shell.Current.GoToAsync(nameof(SignUpPage));
+                        _popupService.ShowPopup<LoginErrorViewModel>(onPresenting: viewModel => viewModel.Error = "Erro na hora do cadastro, tente novamente mais tarde");
+                        break;
                 }
 
-                #if DEBUG
-                    GlobalFunctionalities.Logger.Debug("Cadastrando usuário");
-                #endif
+
             }
             catch (Exception ex)
             {
                 GlobalFunctionalities.Logger.Error(ex);
+                await Shell.Current.GoToAsync(nameof(SignUpPage));
             }
         }
     }

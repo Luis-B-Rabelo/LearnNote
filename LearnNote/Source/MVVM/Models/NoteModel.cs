@@ -4,6 +4,7 @@
     {
         #region Properties
         private uint _noteId; //(composed) vai juntar 2 IDs
+        private uint _userId;
         private uint _notebookId;
         private string _title;
         private string? _text;
@@ -17,6 +18,12 @@
         { 
             get => _noteId; 
             set => _noteId = value;  
+        }
+
+        public uint UserId
+        {
+            get => _userId;
+            set => _userId = value;
         }
 
         public uint NotebookId 

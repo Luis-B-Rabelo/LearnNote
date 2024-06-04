@@ -13,7 +13,7 @@ namespace LearnNote.Model
         private uint _notebookId;
         private uint _userIdFk;
         private string _title;
-        private ushort _quantityNotes;
+        private byte _quantityNotes;
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace LearnNote.Model
             set => _title = value;
         }
 
-        public ushort QuantityNotes
+        public byte QuantityNotes
         {
             get => _quantityNotes;
             set => _quantityNotes = value;

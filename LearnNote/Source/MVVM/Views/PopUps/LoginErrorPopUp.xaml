@@ -2,44 +2,30 @@
 <toolkit:Popup  
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnNote.Source.MVVM.Views.PopUps.AddNotePopUp"
+             x:Class="LearnNote.Source.MVVM.Views.PopUps.LoginErrorPopUp"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels.PopUps"
-             x:DataType="viewModel:AddNoteViewModel"
+             x:DataType="viewModel:LoginErrorViewModel"
              Shell.NavBarIsVisible="False"
             Size="640,360"
             Color="Transparent">
-
+    
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
         <VerticalStackLayout
             VerticalOptions="Center" 
             HorizontalOptions="Center">
 
             <Label 
-            Text="Titulo da Anotação:"
+            Text="{Binding Error}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             FontSize="50" 
             FontFamily="Forum-Regular"
-            TextColor="Black"/>
-
-            <Border
-                Stroke="#657489"
-                Margin="0,20,0,20"
-                Padding="10">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="35"/>
-                </Border.StrokeShape>
-                <Entry  
-                Text="{Binding Title}" 
-                FontSize="50" 
-                FontFamily="Forum-Regular"
-                TextColor="#575757"
-/>
-            </Border>
+            TextColor="Red"
+            Margin="0,0,0,25"/>
 
             <Button 
-                Text="Criar"
+                Text="Ok"
                 FontFamily="Forum-Regular"
                 FontSize="35"
                 TextColor="#ffbd59"
@@ -47,11 +33,8 @@
                 BackgroundColor="#fff1b4"
                 BorderWidth="1"
                 BorderColor="#ffbd59"
-                CornerRadius="40">
-                <Button.GestureRecognizers>
-                    <TapGestureRecognizer 
-                        Command="{Binding AddNoteCommand}"/>
-                </Button.GestureRecognizers>
+                CornerRadius="40"
+                Clicked="OnOkButtonClicked">
 
             </Button>
         </VerticalStackLayout>

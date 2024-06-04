@@ -6,7 +6,11 @@
              xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels"
              x:DataType="viewModel:NoteViewModel"
              Shell.NavBarIsVisible="False">
-    
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
     <ContentPage.Content>
         <Frame 
         HorizontalOptions="Fill"
@@ -26,167 +30,254 @@
                 <Frame x:Name="NavBar"
                 Grid.Column="0" 
                 BackgroundColor="#fff3c3" 
-                Padding="10"  
+                Padding="20"  
                 VerticalOptions="Fill" 
                 Margin="0" 
                 CornerRadius="0" 
                 BorderColor="#fff3c3">
-                    <VerticalStackLayout Spacing="20" VerticalOptions="Center" Padding="40,0,40,0">
+
+                    <Grid RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
 
 
-                        <Border HeightRequest="200" WidthRequest="200"  Stroke="#fdeea9" StrokeThickness="5" Padding="5,5,5,5" BackgroundColor="#fdbd57"  >
-                            <Border.StrokeShape>
-                                <Ellipse />
-                            </Border.StrokeShape>
-                            <Image HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0"/>
-                        </Border>
+                        <Image 
+                        Grid.Row="0" 
+                        Source="logo.png" 
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        Margin="0"/>
 
                         <Button 
-     Text="Cadernos"
-     FontFamily="Forum-Regular"
-     FontSize="Large"
-     TextColor="#ffbd59"
-     HorizontalOptions="Fill"
-     BackgroundColor="#fff1b4"
-     BorderWidth="1"
-     BorderColor="#ffbd59"
-     CornerRadius="25">
+                        Grid.Row="1"
+                        Text="Cadernos"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff3c3"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                 Command="{Binding NavigateToMyNotebooksCommand}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-     Text="Planner"
-     FontFamily="Forum-Regular"
-     FontSize="Large"
-     TextColor="#ffbd59"
-     HorizontalOptions="Fill"
-     BackgroundColor="#fff1b4"
-     BorderWidth="1"
-     BorderColor="#ffbd59"
-     CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                 Command="{Binding NavigateToPlannerCommand}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-     Text="Timer"
-     FontFamily="Forum-Regular"
-     FontSize="Large"
-     TextColor="#ffbd59"
-     HorizontalOptions="Fill"
-     BackgroundColor="#fff1b4"
-     BorderWidth="1"
-     BorderColor="#ffbd59"
-     CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                 Command="{Binding}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-     Text="Calendário"
-     FontFamily="Forum-Regular"
-     FontSize="Large"
-     TextColor="#ffbd59"
-     HorizontalOptions="Fill"
-     BackgroundColor="#fff1b4"
-     BorderWidth="1"
-     BorderColor="#ffbd59"
-     CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                 Command="{Binding NavigateToCalendarCommand}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-     Text="Conquistas"
-     FontFamily="Forum-Regular"
-     FontSize="Large"
-     TextColor="#ffbd59"
-     HorizontalOptions="Fill"
-     BackgroundColor="#fff1b4"
-     BorderWidth="1"
-     BorderColor="#ffbd59"
-     CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                 Command="{Binding}"/>
+                                Command="{Binding NavigateToMyNotebooksCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
 
                         <Button 
-     Text="Voltar a tela inicial"
-     FontFamily="Forum-Regular"
-     FontSize="Medium"
-     TextColor="#657489"
-     HorizontalOptions="Fill"
-     BorderWidth="1">
+                        Grid.Row="2"
+                        Text="Planner"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                 Command="{Binding NavigateToHomeCommand}"/>
+                                Command="{Binding NavigateToPlannerCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
 
-                    </VerticalStackLayout>
+                        <Button 
+                        Grid.Row="3"
+                        Text="Timer"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding}"/>
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button 
+                        Grid.Row="4"
+                        Text="Calendário"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding NavigateToCalendarCommand}"/>
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button 
+                        Grid.Row="5"
+                        Text="Conquistas"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding}"/>
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <HorizontalStackLayout 
+                        Grid.Row="6"
+                        HorizontalOptions="Start" 
+                        Spacing="10">
+                            <ImageButton 
+                            Source="back_button.png"
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                                <ImageButton.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    Command="{Binding NavigateToHomeCommand}"/>
+                                </ImageButton.GestureRecognizers>
+                            </ImageButton>
+                            <Label
+                             Text="Voltar para home"
+                             FontFamily="Forum-Regular"
+                             FontSize="30"
+                             TextColor="#657489"
+                             VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                    </Grid>
                 </Frame>
 
                 <Frame 
                 Grid.Column="1" 
-                Padding="40" 
+                Padding="80,20,80,0" 
                 BackgroundColor="#f9f9f9" 
                 VerticalOptions="Fill" 
                 HorizontalOptions="Fill" 
                 Margin="0" 
                 CornerRadius="0" 
                 BorderColor="#f9f9f9">
-                    <Grid>
+                    <Grid RowSpacing="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="1.5*"></RowDefinition>
                             <RowDefinition Height="8*"></RowDefinition>
                         </Grid.RowDefinitions>
 
                         <HorizontalStackLayout 
                          Grid.Row="0"
-                         HorizontalOptions="Start" 
-                         VerticalOptions="Center" 
-                         WidthRequest="800">
+                         VerticalOptions="Center">
                             <Label 
-                            FontSize="40"  
+                            FontSize="50"  
                             FontFamily="Forum-Regular" 
                             TextColor="#737373" 
                             HorizontalOptions="Start" 
                             Text="{Binding Title}" />
                         </HorizontalStackLayout>
 
-                        <Frame
+
+                        <Border
                             Grid.Row="1"
+                            Stroke="Transparent"
+                            HorizontalOptions="Fill">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="50"/>
+                            </Border.StrokeShape>
+
+                            <HorizontalStackLayout
                             BackgroundColor="#fff3c3"
-                            CornerRadius="25"
-                            WidthRequest="800">
-                            
-                            <HorizontalStackLayout 
-                            HorizontalOptions="Fill" 
-                            VerticalOptions="Center" >
+                            Padding="20"
+                            HorizontalOptions="Fill"
+                            Spacing="10">
+
+                                <Border BackgroundColor="#f9f9f9" Stroke="#ffbd59" Padding="10,0,15,0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="35"/>
+                                    </Border.StrokeShape>
+
+                                    <Entry 
+                                    x:Name="NoteFontSize"
+                                    Text="25"
+                                    VerticalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="30"
+                                    FontFamily="Forum-Regular" 
+                                    TextColor="Black"
+                                    TextChanged="NoteFontSizeChanged"
+                                        WidthRequest="80"/>
+                                </Border>
+                                <ImageButton
+                                    x:Name="SaveButton"
+                                        Source="save.png"
+                                        BackgroundColor="#fff3c3"
+                                        Clicked="SaveButtonClicked">
+
+                                    <ImageButton.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SaveNoteCommand}"/>
+                                    </ImageButton.GestureRecognizers>
+                                </ImageButton>
+                                
 
                             </HorizontalStackLayout>
-                        </Frame>
+                        </Border>
 
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="6"/>
+                                <ColumnDefinition Width="6*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <ScrollView>
-                                <Editor Grid.Column="1" 
-                                Text="{Binding Text}" 
-                                HorizontalOptions="Fill"
-                                VerticalOptions="Fill"/>
+                            <ScrollView Grid.Column="1"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill">
+                                <Border
+                                    BackgroundColor="#ffffff"
+                                    Stroke="#ffbd59"
+                                    Padding="25">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20"/>
+                                    </Border.StrokeShape>
+                                    <Editor  
+                                        x:Name="NoteText"
+                                    Text="{Binding Text}" 
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Background="Transparent"
+                                    FontSize="25"
+                                    TextColor="Black"
+                                    FontFamily="Forum-Regular" 
+                                    AutoSize="TextChanges"/>
+                                </Border>
                             </ScrollView>
 
 

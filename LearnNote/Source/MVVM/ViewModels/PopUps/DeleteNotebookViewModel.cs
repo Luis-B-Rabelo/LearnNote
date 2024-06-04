@@ -3,23 +3,19 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearnNote.Source.DAO;
 using LearnNote.Source.MVVM.Views;
-using System.Collections.Specialized;
+using NLog;
 using System.ComponentModel;
 
 namespace LearnNote.Source.MVVM.ViewModels.PopUps
 {
-    public partial class AddNoteViewModel : ObservableObject, INotifyCollectionChanged
+    public partial class DeleteNotebookViewModel : ObservableObject, INotifyPropertyChanged
     {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
-
         #region Properties
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private string _title;
 
-        public byte QntNotes { get; set; }
-
-        private uint _notebookIdFk;
+        private uint _notebookId;
 
         private uint _userIdFk;
 
@@ -32,16 +28,16 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
             set
             {
                 _title = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Title");
             }
         }
 
-        public uint NotebookIdFk
+        public uint NotebookId
         {
-            get => _notebookIdFk;
+            get => _notebookId;
             set
             {
-                _notebookIdFk = value;
+                _notebookId = value;
                 OnPropertyChanged();
             }
         }
@@ -59,18 +55,24 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #endregion
 
         [RelayCommand]
-        public async Task AddNote()
+        public async Task DeleteNotebook()
         {
-            uint noteId;
-            noteId = NoteDAO.CreateNote(Title, NotebookIdFk, UserIdFk, QntNotes);
 
-            if (noteId != 0)
+#if DEBUG
+            GlobalFunctionalities.Logger.ForDebugEvent()
+                .Message("Deletando caderno")
+                .Property("NotebookId", _notebookId)
+                .Log();
+#endif
+
+            if (NotebookDAO.DeleteNotebook(NotebookId, UserIdFk))
             {
-                await Shell.Current.GoToAsync($"{nameof(NotePage)}?PassNoteId={noteId}");
+                Thread.Sleep(500);
+                await Shell.Current.GoToAsync($"{nameof(MyNotebooksPage)}?PassUserId={UserIdFk}");
             }
             else
             {
-                await Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookIdFk}");
+                await Shell.Current.GoToAsync($"{nameof(MyNotebooksPage)}?PassUserId={UserIdFk}");
             }
         }
     }

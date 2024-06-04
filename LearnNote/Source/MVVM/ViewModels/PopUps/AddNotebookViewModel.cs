@@ -16,7 +16,6 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
 
         private uint _userIdFk;
 
-        private bool _canClose;
         #endregion
 
         #region Getters & Setters
@@ -38,21 +37,6 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
                 _userIdFk = value;
                 OnPropertyChanged();
             }
-        }
-
-        public bool CanClose
-        {
-            get => _canClose; 
-            set 
-            { 
-                _canClose = value;
-                OnPropertyChanged("CanClose");
-            }
-        }
-
-        public AddNotebookViewModel()
-        {
-            _canClose = false;
         }
 
         #endregion
@@ -77,7 +61,6 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
             else
             {
                 await Shell.Current.GoToAsync(nameof(MyNotebooksPage));
-                CanClose = true;
             }
         }
     }

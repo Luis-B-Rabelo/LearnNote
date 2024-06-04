@@ -1,4 +1,5 @@
-﻿using LearnNote.Model;
+﻿using CommunityToolkit.Mvvm.Input;
+using LearnNote.Model;
 using LearnNote.Source.Core;
 using LearnNote.Source.DAO;
 using NLog;
@@ -9,6 +10,8 @@ namespace LearnNote.Source.MVVM.ViewModels
     {
         private uint _noteId;
 
+        private uint _notebookId;
+
         private string _title;
 
         private string _text;
@@ -16,12 +19,6 @@ namespace LearnNote.Source.MVVM.ViewModels
         private DateOnly _creationDate;
 
         private DateTime _lastEditDateTime;
-
-        public uint NoteId
-        {
-            get => _noteId;
-            set => _noteId = value;
-        }
 
         public string Title
         {
@@ -43,51 +40,57 @@ namespace LearnNote.Source.MVVM.ViewModels
             }
         }
 
-        public DateOnly CreationDate
-        {
-            get => _creationDate;
-            set
-            {
-                _creationDate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime LastEditDateTime
-        {
-            get => _lastEditDateTime;
-            set
-            {
-                _lastEditDateTime = value;
-                OnPropertyChanged();
-            }
-        }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            if (query.ContainsKey("PassNoteId") && query.ContainsKey("PassUserId"))
+            if (query.ContainsKey("PassNoteId"))
             {
-                NoteId = uint.Parse(query["PassNoteId"].ToString());
-                UserId = uint.Parse(query["PassUserId"].ToString());
+                _noteId = uint.Parse(query["PassNoteId"].ToString());
 
-                NoteModel note = NoteDAO.SelectNote(NoteId, UserId);
+                NoteModel note = NoteDAO.SelectNote(_noteId);
 
                 Title = note.Title;
                 Text = note.Text;
-                CreationDate = note.CreationDate;
-                LastEditDateTime = note.LastEditDateTime;
+                _notebookId = note.NotebookId;
+                _creationDate = note.CreationDate;
+                _lastEditDateTime = note.LastEditDateTime;
+                UserId = note.UserId;
 
 #if DEBUG
                 GlobalFunctionalities.Logger.ForDebugEvent()
                     .Message("Parametro passado e puxando anotação")
                     .Property("PassUserId", UserId)
-                    .Property("NoteId", NoteId)
+                    .Property("NoteId", _noteId)
                     .Property("Cadernos", Title)
                     .Log();
 #endif
 
+                note = null;
             }
         }
+
+        [RelayCommand]
+        public async Task SaveNote()
+        {
+            if(NoteDAO.SaveNote(UserId, _notebookId, _noteId, Text))
+            {
+                GlobalFunctionalities.Logger.ForDebugEvent()
+                    .Message("Anotação Salva")
+                    .Property("NoteId", _noteId)
+                    .Property("Anotação", Text)
+                    .Log();
+            }
+            else
+            {
+                GlobalFunctionalities.Logger.ForDebugEvent()
+                .Message("Problema para salvar anotação")
+                .Property("NoteId", _noteId)
+                .Property("Anotação", Text)
+                .Log();
+            }
+
+        }
+
 
     }
 }

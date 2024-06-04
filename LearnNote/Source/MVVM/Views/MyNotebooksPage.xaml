@@ -6,6 +6,10 @@
              x:DataType="viewModel:MyNotebooksViewModel"
              Shell.NavBarIsVisible="False">
 
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
     <ContentPage.Content>
         <Frame 
         HorizontalOptions="Fill"
@@ -15,8 +19,7 @@
         BackgroundColor="#f9f9f9">
             <Grid
             Margin="0"
-            Padding="0"
-            >
+            Padding="0">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -24,113 +27,152 @@
                 </Grid.ColumnDefinitions>
 
                 <Frame x:Name="NavBar"
-                    Grid.Column="0" 
-                    BackgroundColor="#fff3c3" 
-                    Padding="10"  
-                    VerticalOptions="Fill" 
-                    Margin="0" 
-                    CornerRadius="0" 
-                    BorderColor="#fff3c3">
-                    <VerticalStackLayout Spacing="20" VerticalOptions="Center" Padding="40,0,40,0">
+                Grid.Column="0" 
+                BackgroundColor="#fff3c3" 
+                Padding="20"  
+                VerticalOptions="Fill" 
+                Margin="0" 
+                CornerRadius="0" 
+                BorderColor="#fff3c3">
+
+                    <Grid RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
 
 
-                        <Border HeightRequest="200" WidthRequest="200"  Stroke="#fdeea9" StrokeThickness="5" Padding="5,5,5,5" BackgroundColor="#fdbd57"  >
-                            <Border.StrokeShape>
-                                <Ellipse />
-                            </Border.StrokeShape>
-                            <Image HorizontalOptions="Fill" VerticalOptions="Fill" Margin="0"/>
-                        </Border>
+                        <Image 
+                        Grid.Row="0" 
+                        Source="logo.png" 
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        Margin="0"/>
 
-                        <Button 
-            Text="Cadernos"
-            FontFamily="Forum-Regular"
-            FontSize="Large"
-            TextColor="#ffbd59"
-            HorizontalOptions="Fill"
-            BackgroundColor="#fff1b4"
-            BorderWidth="1"
-            BorderColor="#ffbd59"
-            CornerRadius="25">
+                                    <Button 
+                        Grid.Row="1"
+                        Text="Cadernos"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff3c3"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                        Command="{Binding NavigateToMyNotebooksCommand}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-            Text="Planner"
-            FontFamily="Forum-Regular"
-            FontSize="Large"
-            TextColor="#ffbd59"
-            HorizontalOptions="Fill"
-            BackgroundColor="#fff1b4"
-            BorderWidth="1"
-            BorderColor="#ffbd59"
-            CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                        Command="{Binding NavigateToPlannerCommand}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-            Text="Timer"
-            FontFamily="Forum-Regular"
-            FontSize="Large"
-            TextColor="#ffbd59"
-            HorizontalOptions="Fill"
-            BackgroundColor="#fff1b4"
-            BorderWidth="1"
-            BorderColor="#ffbd59"
-            CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                        Command="{Binding}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-            Text="Calendário"
-            FontFamily="Forum-Regular"
-            FontSize="Large"
-            TextColor="#ffbd59"
-            HorizontalOptions="Fill"
-            BackgroundColor="#fff1b4"
-            BorderWidth="1"
-            BorderColor="#ffbd59"
-            CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                        Command="{Binding NavigateToCalendarCommand}"/>
-                            </Button.GestureRecognizers>
-                        </Button>
-                        <Button 
-            Text="Conquistas"
-            FontFamily="Forum-Regular"
-            FontSize="Large"
-            TextColor="#ffbd59"
-            HorizontalOptions="Fill"
-            BackgroundColor="#fff1b4"
-            BorderWidth="1"
-            BorderColor="#ffbd59"
-            CornerRadius="25">
-                            <Button.GestureRecognizers>
-                                <TapGestureRecognizer 
-                        Command="{Binding}"/>
+                                Command="{Binding NavigateToMyNotebooksCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
 
                         <Button 
-            Text="Voltar a tela inicial"
-            FontFamily="Forum-Regular"
-            FontSize="Medium"
-            TextColor="#657489"
-            HorizontalOptions="Fill"
-            BorderWidth="1">
+                        Grid.Row="2"
+                        Text="Planner"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                        Command="{Binding NavigateToHomeCommand}"/>
+                                Command="{Binding NavigateToPlannerCommand}"/>
                             </Button.GestureRecognizers>
                         </Button>
 
-                    </VerticalStackLayout>
+                        <Button 
+                        Grid.Row="3"
+                        Text="Timer"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding}"/>
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button 
+                        Grid.Row="4"
+                        Text="Calendário"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding NavigateToCalendarCommand}"/>
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <Button 
+                        Grid.Row="5"
+                        Text="Conquistas"
+                        FontFamily="Forum-Regular"
+                        FontSize="40"
+                        TextColor="#ffbd59"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#fff1b4"
+                        BorderWidth="1"
+                        BorderColor="#ffbd59"
+                        CornerRadius="35"
+                        Padding="0">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding}"/>
+                            </Button.GestureRecognizers>
+                        </Button>
+
+                        <HorizontalStackLayout 
+                        Grid.Row="6"
+                        HorizontalOptions="Start" 
+                        Spacing="10">
+                            <ImageButton 
+                            Source="back_button.png"
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                                <ImageButton.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    Command="{Binding NavigateToHomeCommand}"/>
+                                </ImageButton.GestureRecognizers>
+                            </ImageButton>
+                            <Label
+                             Text="Voltar para home"
+                             FontFamily="Forum-Regular"
+                             FontSize="30"
+                             TextColor="#657489"
+                             VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                    </Grid>
                 </Frame>
 
                 <Frame Grid.Column="1" Padding="40" BackgroundColor="#f9f9f9" VerticalOptions="Fill" HorizontalOptions="Fill" Margin="0" CornerRadius="0" BorderColor="#f9f9f9">
@@ -146,7 +188,7 @@
                             HorizontalOptions="Start" 
                             VerticalOptions="Center" 
                             WidthRequest="800">
-                            <Label FontSize="40"  FontFamily="Forum-Regular" TextColor="#ffbd59" HorizontalOptions="Start">Meus Cadernos</Label>
+                            <Label FontSize="40" Margin="40,0,0,0" FontFamily="Forum-Regular" TextColor="#ffbd59" HorizontalOptions="Start">Meus Cadernos</Label>
 
                             <BoxView 
                                  Color="#657489"
@@ -154,40 +196,43 @@
                                  HorizontalOptions="Fill"/>
                         </VerticalStackLayout>
 
-                        <CollectionView 
-                            x:Name="notebooks"
-                            Grid.Row="1"
-                            ItemsSource="{Binding Notebooks}" 
-                            HorizontalOptions="Fill" 
-                            VerticalOptions="Fill">
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout
-                                    Orientation="Vertical"
-                                    Span="5"/>
-                            </CollectionView.ItemsLayout>
+                        <ScrollView
+                        Grid.Row="1">
+                            <CollectionView 
+                                x:Name="notebooks"
+                                ItemsSource="{Binding Notebooks}" 
+                                HorizontalOptions="Fill" 
+                                VerticalOptions="Fill">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout
+                                        Orientation="Vertical"
+                                        Span="5"/>
+                                </CollectionView.ItemsLayout>
 
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
 
-                                    <VerticalStackLayout BackgroundColor="Azure"  HeightRequest="100" WidthRequest="100">
-                                        <ImageButton Source="notebook.png" HeightRequest="75" WidthRequest="75" ToolTipProperties.Text="{Binding QuantityNotes }">
-                                            <ImageButton.GestureRecognizers>
-                                                <TapGestureRecognizer 
-                                                    Command="{Binding Source={x:Reference notebooks}, Path=BindingContext.OpenNotebookCommand }"
-                                                    CommandParameter="{Binding NotebookId}"/>
-                                            </ImageButton.GestureRecognizers>
-                                        </ImageButton>
-                                        <Label Text="{Binding Title}" TextColor="Black" HorizontalOptions="Center"></Label>
-                                    </VerticalStackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-
+                                        <VerticalStackLayout HeightRequest="100" WidthRequest="100">
+                                            <ImageButton Source="notebook.png" HeightRequest="75" WidthRequest="75" ToolTipProperties.Text="{Binding QuantityNotes }">
+                                                <ImageButton.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        Command="{Binding Source={x:Reference notebooks}, Path=BindingContext.OpenNotebookCommand }"
+                                                        CommandParameter="{Binding NotebookId}"/>
+                                                </ImageButton.GestureRecognizers>
+                                            </ImageButton>
+                                            <Label Text="{Binding Title}" FontSize="20" FontFamily="Forum-Regular" TextColor="Black" HorizontalOptions="Center"></Label>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
                         <Button 
                             Grid.Row="2"
                             Text="+"
                             FontFamily="Forum-Regular"
-                            FontSize="Large"
+                            WidthRequest="60"
+                            HeightRequest="60"
+                            FontSize="50"
                             TextColor="#ffbd59"
                             HorizontalOptions="End"
                             BackgroundColor="#fff1b4"

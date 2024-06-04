@@ -1,4 +1,5 @@
 using LearnNote.Source.MVVM.ViewModels;
+using System.Runtime.CompilerServices;
 
 namespace LearnNote.Source.MVVM.Views;
 
