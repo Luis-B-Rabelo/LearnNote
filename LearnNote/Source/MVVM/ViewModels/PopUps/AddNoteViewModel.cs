@@ -58,19 +58,19 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #endregion
 
         [RelayCommand]
-        public async Task AddNote(Popup popup)
+        public void AddNote(Popup popup)
         {
             uint noteId;
             noteId = NoteDAO.CreateNote(Title, NotebookIdFk, UserIdFk);
 
             if (noteId != 0)
             {
-                await Shell.Current.GoToAsync($"{nameof(NotePage)}?PassNoteId={noteId}");
+                Shell.Current.GoToAsync($"{nameof(NotePage)}?PassNoteId={noteId}");
                 popup.Close();
             }
             else
             {
-                await Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookIdFk}");
+                Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookIdFk}");
                 popup.Close();
             }
         }

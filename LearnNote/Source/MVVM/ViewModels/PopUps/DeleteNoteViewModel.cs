@@ -68,7 +68,7 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #endregion
 
         [RelayCommand]
-        public async Task DeleteNote(Popup popup)
+        public void DeleteNote(Popup popup)
         {
 
 #if DEBUG
@@ -80,12 +80,12 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
 
             if (NoteDAO.DeleteNote(NoteId, NotebookId, UserIdFk))
             {
-                await Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookId}");
+                Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookId}");
                 popup.Close();
             }
             else
             {
-                await Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookId}");
+                Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookId}");
                 popup.Close();
             }
         }

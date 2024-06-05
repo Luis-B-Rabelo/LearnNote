@@ -84,25 +84,21 @@ namespace LearnNote.Source.DAO
 
                         UpdateByProperties("notebooktable", updateQntNotes, notebookSearch);
 
-                        Thread.Sleep(500);
                         return (uint)elements.First()["noteId"];
                     }
                     else
                     {
-                        Thread.Sleep(500);
                         return 0;
                     }
                 }
                 else
                 {
-                    Thread.Sleep(500);
                     return 0;
                 }
 
             }
             catch (Exception ex)
             {
-                Thread.Sleep(500);
                 return 0;
             }
         }
@@ -163,12 +159,10 @@ namespace LearnNote.Source.DAO
 
                     UpdateByProperties("notebooktable", updateQntNotes, notebookSearch);
 
-                    Thread.Sleep(500);
                     return true;
                 }
                 else
                 {
-                    Thread.Sleep(500);
                     return false;
                 }
 
@@ -176,7 +170,6 @@ namespace LearnNote.Source.DAO
             }
             catch (Exception ex)
             {
-                Thread.Sleep(500);
                 return false;
             }
         }
@@ -322,7 +315,6 @@ namespace LearnNote.Source.DAO
 
                 note.Text = text;
 
-                Thread.Sleep(500);
                 return note;
             }
             catch (IOException ex)
@@ -332,7 +324,6 @@ namespace LearnNote.Source.DAO
                     .Property("Exceção", ex)
                     .Log();
 
-                Thread.Sleep(500);
                 return null;
             }
         }
