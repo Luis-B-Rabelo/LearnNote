@@ -13,6 +13,12 @@ public partial class NotePage : ContentPage
 
     private void NoteFontSizeChanged(object sender, TextChangedEventArgs e)
     {
-        NoteText.FontSize = double.Parse(NoteFontSize.Text);
+        if (double.TryParse(NoteFontSize.Text, out double fontSize)) //troquei double.Parse por TryParse, pois ele não dá erro caso o valor não seja um número
+        {
+            if (NoteText != null)
+            {
+                NoteText.FontSize = fontSize;
+            }
+        }
     }
 }
