@@ -8,7 +8,8 @@
              x:DataType="viewModel:AddNoteViewModel"
              Shell.NavBarIsVisible="False"
             Size="640,360"
-            Color="Transparent">
+            Color="Transparent"
+    x:Name="AddNote">
 
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
         <VerticalStackLayout
@@ -50,7 +51,8 @@
                 CornerRadius="40">
                 <Button.GestureRecognizers>
                     <TapGestureRecognizer 
-                        Command="{Binding AddNoteCommand}"/>
+                        Command="{Binding AddNoteCommand}"
+                        CommandParameter="{Binding Source={x:Reference AddNote}}"/>
                 </Button.GestureRecognizers>
 
             </Button>

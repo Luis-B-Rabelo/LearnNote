@@ -1,4 +1,5 @@
 ﻿
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearnNote.Source.DAO;
@@ -57,7 +58,7 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #endregion
 
         [RelayCommand]
-        public async Task AddNote()
+        public async Task AddNote(Popup popup)
         {
             uint noteId;
             noteId = NoteDAO.CreateNote(Title, NotebookIdFk, UserIdFk);
@@ -65,10 +66,12 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
             if (noteId != 0)
             {
                 await Shell.Current.GoToAsync($"{nameof(NotePage)}?PassNoteId={noteId}");
+                popup.Close();
             }
             else
             {
                 await Shell.Current.GoToAsync($"{nameof(NotebookPage)}?PassNotebookId={NotebookIdFk}");
+                popup.Close();
             }
         }
     }

@@ -8,7 +8,8 @@
              x:DataType="viewModel:DeleteNoteViewModel"
              Shell.NavBarIsVisible="False"
              Size="640,360"
-            Color="Transparent">
+            Color="Transparent"
+    x:Name="DeleteNote">
 
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
         <VerticalStackLayout
@@ -36,7 +37,8 @@
               CornerRadius="40">
                 <Button.GestureRecognizers>
                     <TapGestureRecognizer 
-                      Command="{Binding DeleteNoteCommand}"/>
+                      Command="{Binding DeleteNoteCommand}"
+                    CommandParameter="{Binding Source={x:Reference DeleteNote}}"/>
                 </Button.GestureRecognizers>
 
             </Button>

@@ -1,4 +1,5 @@
 ﻿
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearnNote.Source.DAO;
@@ -55,7 +56,7 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
         #endregion
 
         [RelayCommand]
-        public async Task DeleteNotebook()
+        public async Task DeleteNotebook(Popup popup)
         {
 
 #if DEBUG
@@ -67,12 +68,13 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
 
             if (NotebookDAO.DeleteNotebook(NotebookId, UserIdFk))
             {
-                Thread.Sleep(500);
                 await Shell.Current.GoToAsync($"{nameof(MyNotebooksPage)}?PassUserId={UserIdFk}");
+                popup.Close();
             }
             else
             {
                 await Shell.Current.GoToAsync($"{nameof(MyNotebooksPage)}?PassUserId={UserIdFk}");
+                popup.Close();
             }
         }
     }

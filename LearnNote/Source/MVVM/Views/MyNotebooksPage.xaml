@@ -213,7 +213,7 @@
                                     <DataTemplate>
 
                                         <VerticalStackLayout HeightRequest="100" WidthRequest="100">
-                                            <ImageButton Source="notebook.png" HeightRequest="75" WidthRequest="75" ToolTipProperties.Text="{Binding QuantityNotes }">
+                                            <ImageButton Source="notebook.png" HeightRequest="75" WidthRequest="75" ToolTipProperties.Text="{Binding Title }">
                                                 <ImageButton.GestureRecognizers>
                                                     <TapGestureRecognizer 
                                                         Command="{Binding Source={x:Reference notebooks}, Path=BindingContext.OpenNotebookCommand }"

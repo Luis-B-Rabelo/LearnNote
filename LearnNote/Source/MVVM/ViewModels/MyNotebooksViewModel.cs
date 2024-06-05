@@ -64,7 +64,7 @@ namespace LearnNote.Source.MVVM.ViewModels
         [RelayCommand]
         public async Task DisplayAddNotebookPopUp()
         {
-            _popupService.ShowPopup<AddNotebookViewModel>(onPresenting: viewModel => viewModel.UserIdFk = UserId);
+            await _popupService.ShowPopupAsync<AddNotebookViewModel>(onPresenting: viewModel => viewModel.UserIdFk = UserId);
         }
     }
 }

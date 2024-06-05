@@ -58,7 +58,7 @@
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="10">
-                            <VerticalStackLayout Spacing="5">
+                            <VerticalStackLayout Spacing="5" ToolTipProperties.Text="Minímo de 8 caracteres">
                                 <Label x:Name="NameLabel" TextDecorations="None" FontSize="25" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Nome</Label>
                                 <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
                                     <Border.StrokeShape>
@@ -68,7 +68,7 @@
                                 </Border>
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Spacing="5">
+                            <VerticalStackLayout Spacing="5" ToolTipProperties.Text="Email válido">
                                     <Label x:Name="EmailLabel" TextDecorations="None" FontSize="25" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Email</Label>
                                     <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
                                         <Border.StrokeShape>
@@ -78,7 +78,7 @@
                                     </Border>
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout Spacing="5">
+                            <VerticalStackLayout Spacing="5" ToolTipProperties.Text="Minímo de 8 caracteres; Pelo menos um caractere especial, uma letra maiúscula, uma minúscula e um digito">
                                     <Label x:Name="PasswordLabel" TextDecorations="None" FontSize="25" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Senha</Label>
                                     <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
                                         <Border.StrokeShape>
@@ -88,7 +88,7 @@
                                     </Border>
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout Spacing="5" Margin="0,0,0,5">
+                            <VerticalStackLayout Spacing="5" Margin="0,0,0,5" ToolTipProperties.Text="Repetir senha inserida acima">
                                     <Label x:Name="PasswordConfirmLabel" TextDecorations="None" FontSize="25" HorizontalOptions="Start" FontFamily="Forum-Regular" TextColor="#ffbd59">Confirmação senha</Label>
                                     <Border Stroke="LightGray" StrokeThickness="2" Margin="5,0,5,0">
                                         <Border.StrokeShape>
