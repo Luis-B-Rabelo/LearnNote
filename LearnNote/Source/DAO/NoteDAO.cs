@@ -41,7 +41,8 @@ namespace LearnNote.Source.DAO
 
                         string path = $@"{AppDomain.CurrentDomain.BaseDirectory}\Storage\Users\{userIdFk}\Notebooks\{notebookIdFk}";
 
-                        File.Create(Path.Combine(path, $"{(uint)elements.First()["noteId"]}.txt"));
+                        FileStream file = File.Create(Path.Combine(path, $"{(uint)elements.First()["noteId"]}.txt"));
+                        file.Close();
 
 #if DEBUG
                         GlobalFunctionalities.Logger.ForDebugEvent()
