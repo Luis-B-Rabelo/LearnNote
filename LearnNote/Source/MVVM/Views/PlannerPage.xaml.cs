@@ -8,5 +8,6 @@ public partial class PlannerPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = vm;
+
     }
 }

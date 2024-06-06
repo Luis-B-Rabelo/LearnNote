@@ -50,7 +50,7 @@ namespace LearnNote.Source.Core
         {
             try
             {
-                await Shell.Current.GoToAsync(nameof(PlannerPage));
+                await Shell.Current.GoToAsync($"{nameof(PlannerPage)}?PassUserId={UserId}");
             }
             catch (Exception ex)
             {

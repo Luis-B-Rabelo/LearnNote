@@ -8,63 +8,70 @@
         private string _name;
         private string _description;
         private byte _dayWeek;
-        private TimeOnly _startTime;
-        private TimeOnly _endTime;
-        private bool _alarm;
-        private bool _studyTime;
+        private byte _activityNum;
+        private uint _userIdFk;
 
         #endregion
 
         #region Getters & Setters
 
-        public uint ActivityId 
-        {  
-            get { return _activityId; } 
-            set {  _activityId = value; } 
+        public ActivityModel Activity
+        {
+            get => this; 
+        }
+
+        public uint ActivityId
+        {
+            get => _activityId;
+            set => _activityId = value;
         }
 
         public string Name
-        { 
-            get { return _name; } 
-            set {  _name = value; } 
+        {
+            get => _name;
+            set => _name = value;
         }
 
         public string Description
         {
-            get { return _description; }
-            set { _description = value; }
+            get => _description;
+            set => _description = value;
         }
 
         public byte DayWeek
-        { 
-            get { return _dayWeek; } 
-            set { _dayWeek = value; } 
-        }
-
-        public TimeOnly StartTime
-        { 
-            get { return _startTime; } 
-            set {  _startTime = value; } 
-        }
-
-        public TimeOnly EndTime
         {
-            get { return _endTime; }
-            set { _endTime = value; }
+            get => _dayWeek;
+            set => _dayWeek = value;
         }
 
-        public bool Alarm
+        public byte ActivityNum
         {
-            get { return _alarm; }
-            set { _alarm = value; }
+            get => _activityNum;
+            set => _activityNum = value;
         }
 
-        public bool StudyTime
+        public uint UserIdFk
         {
-            get { return _studyTime; }
-            set { _studyTime = value; }
+            get => _userIdFk;
+            set => _userIdFk = value;
         }
 
+
+
+        #endregion
+
+        #region Methods
+        public ActivityModel NewActivity(uint activityId, uint userIdFk, byte dayWeek, byte activityNum)
+        {
+            _activityId = activityId;
+            _name = string.Empty;
+            _description = string.Empty;
+            _dayWeek = dayWeek;
+            _activityNum = activityNum;
+            _userIdFk = userIdFk;
+
+            return this;
+        }
         #endregion
     }
 }

@@ -9,7 +9,7 @@
              Shell.NavBarIsVisible="False"
              Size="640,360"
             Color="Transparent"
-    x:Name="AddNotebook">
+    x:Name="ManageActivity">
 
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
         <VerticalStackLayout
@@ -32,7 +32,7 @@
                     <RoundRectangle CornerRadius="35"/>
                 </Border.StrokeShape>
                 <Entry  
-                Text="{Binding Title}" 
+                Text="{Binding Title, Mode=TwoWay}" 
                 FontSize="50" 
                 FontFamily="Forum-Regular"
                 TextColor="#575757"

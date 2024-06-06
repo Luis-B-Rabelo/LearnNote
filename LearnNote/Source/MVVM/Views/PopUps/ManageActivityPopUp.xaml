@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup  
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnNote.Source.MVVM.Views.PopUps.ManageActivityPopUp"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModel="clr-namespace:LearnNote.Source.MVVM.ViewModels.PopUps"
+             x:DataType="viewModel:ManageActivityViewModel"
+             Shell.NavBarIsVisible="False"
+             Size="640,640"
+            Color="Transparent"
+    x:Name="ManageActivity"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+
+    <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
+
+        <Grid HorizontalOptions="Fill" VerticalOptions="Fill" RowDefinitions="2*,4*,*">
+            <Border
+                Grid.Row="0"
+                Stroke="#657489"
+                Margin="80,10,80,10"
+                Padding="10"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="35"/>
+                </Border.StrokeShape>
+                <Entry  
+                Text="{Binding Source={x:Reference ManageActivity}, Path=BindingContext.Name, Mode=TwoWay}" 
+                FontSize="80" 
+                FontFamily="Forum-Regular"
+                TextColor="#575757"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"/>
+            </Border>
+
+            <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never" FlowDirection="LeftToRight" CascadeInputTransparent="True" >
+                <Border
+                    Stroke="#657489"
+                    Margin="20,10,20,10"
+                    Padding="10"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="35"/>
+                    </Border.StrokeShape>
+                    <Editor  
+                Text="{Binding Source={x:Reference ManageActivity}, Path=BindingContext.Description, Mode=TwoWay}" 
+                    FontSize="25" 
+                    FontFamily="Forum-Regular"
+                    TextColor="Black"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        AutoSize="TextChanges"
+                        MaxLength="1023"/>
+                </Border>
+            </ScrollView>
+
+            <StackLayout Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="40,0,40,0" Orientation="Horizontal">
+                <Button 
+                Text="Salvar"
+                FontFamily="Forum-Regular"
+                FontSize="35"
+                TextColor="#ffbd59"
+                HorizontalOptions="End"
+                BackgroundColor="#fff1b4"
+                BorderWidth="1"
+                BorderColor="#ffbd59"
+                CornerRadius="40">
+                    <Button.GestureRecognizers>
+                        <TapGestureRecognizer 
+                        Command="{Binding SaveActivityCommand}"
+                        CommandParameter="{Binding Source={x:Reference ManageActivity}}"/>
+                    </Button.GestureRecognizers>
+
+                </Button>
+                <Button 
+                x:Name="CloseButton"
+                Text="Fechar"
+                FontFamily="Forum-Regular"
+                FontSize="35"
+                TextColor="#ffbd59"
+                HorizontalOptions="Start"
+                BackgroundColor="#fff1b4"
+                BorderWidth="1"
+                BorderColor="#ffbd59"
+                CornerRadius="40"
+                Clicked="OnCloseButtonClick">
+
+                </Button>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</toolkit:Popup>
