@@ -9,7 +9,7 @@
              Shell.NavBarIsVisible="False"
              Size="640,360"
             Color="Transparent"
-    x:Name="ManageActivity">
+    x:Name="AddNotebook">
 
     <Frame BackgroundColor="#f9f9f9" BorderColor="#ffbd59" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="50">
         <VerticalStackLayout
