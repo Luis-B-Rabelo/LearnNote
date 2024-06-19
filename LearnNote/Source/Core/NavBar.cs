@@ -84,5 +84,18 @@ namespace LearnNote.Source.Core
             }
         }
 
+        [RelayCommand]
+        protected async Task NavigateToAlarmPage()
+        {
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(AlarmPage));
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
     }
 }
