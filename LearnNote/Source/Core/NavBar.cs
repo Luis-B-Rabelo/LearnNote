@@ -50,7 +50,7 @@ namespace LearnNote.Source.Core
         {
             try
             {
-                await Shell.Current.GoToAsync(nameof(PlannerPage));
+                await Shell.Current.GoToAsync($"{nameof(PlannerPage)}?PassUserId={UserId}");
             }
             catch (Exception ex)
             {
@@ -77,19 +77,6 @@ namespace LearnNote.Source.Core
             try
             {
                 await Shell.Current.GoToAsync(nameof(HomePage));
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        [RelayCommand]
-        protected async Task NavigateToAlarmPage()
-        {
-            try
-            {
-                await Shell.Current.GoToAsync(nameof(AlarmPage));
             }
             catch (Exception ex)
             {

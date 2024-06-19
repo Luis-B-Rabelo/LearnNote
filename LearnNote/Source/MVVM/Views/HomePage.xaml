@@ -108,7 +108,7 @@
                         Padding="0">
                             <Button.GestureRecognizers>
                                 <TapGestureRecognizer 
-                                Command="{Binding NavigateToAlarmPageCommand}"/>
+                                Command="{Binding}"/>
                             </Button.GestureRecognizers>
                         </Button>
 

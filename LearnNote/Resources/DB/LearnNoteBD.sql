@@ -29,12 +29,11 @@ CREATE TABLE NotebookTable(
  
 CREATE TABLE ActivityTable(
  
-	activityId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	activityId INT UNSIGNED NOT NULL,
     activityName VARCHAR (255) NOT NULL,
     activityDescription VARCHAR (1023), 
+    activityNum TINYINT UNSIGNED NOT NULL,
     activityDayWeek TINYINT UNSIGNED NOT NULL, 
-    activityStartTime TIME NOT NULL,
-    activityEndTime TIME NOT NULL,
     
     userIdFk INT UNSIGNED,
     

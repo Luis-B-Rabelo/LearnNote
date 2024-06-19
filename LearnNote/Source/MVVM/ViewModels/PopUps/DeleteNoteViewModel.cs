@@ -67,6 +67,14 @@ namespace LearnNote.Source.MVVM.ViewModels.PopUps
 
         #endregion
 
+        public DeleteNoteViewModel(uint noteId, string noteTitle, uint notebookId, uint userIdFk)
+        {
+            NoteId = noteId;
+            NoteTitle = noteTitle;
+            NotebookId = notebookId;
+            UserIdFk = userIdFk;
+        }
+
         [RelayCommand]
         public void DeleteNote(Popup popup)
         {

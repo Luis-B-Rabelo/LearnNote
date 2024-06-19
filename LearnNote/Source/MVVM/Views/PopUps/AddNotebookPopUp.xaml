@@ -32,7 +32,7 @@
                     <RoundRectangle CornerRadius="35"/>
                 </Border.StrokeShape>
                 <Entry  
-                Text="{Binding Title}" 
+                Text="{Binding Title, Mode=TwoWay}" 
                 FontSize="50" 
                 FontFamily="Forum-Regular"
                 TextColor="#575757"

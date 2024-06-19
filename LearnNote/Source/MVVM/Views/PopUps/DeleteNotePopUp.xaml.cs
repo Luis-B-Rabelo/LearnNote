@@ -5,9 +5,9 @@ namespace LearnNote.Source.MVVM.Views.PopUps;
 
 public partial class DeleteNotePopUp : Popup
 {
-	public DeleteNotePopUp(DeleteNoteViewModel vm)
+	public DeleteNotePopUp(uint noteId, string noteTitle, uint notebookId, uint userId)
 	{
 		InitializeComponent();
-		BindingContext = vm;
-	}
+		BindingContext = new DeleteNoteViewModel(noteId, noteTitle, notebookId, userId);
+    }
 }
