@@ -43,8 +43,8 @@ namespace LearnNote
             builder.Services.AddTransient<NotePage>();
             builder.Services.AddTransient<NoteViewModel>();
 
-            builder.Services.AddTransient<PlannerPage>();
-            builder.Services.AddTransient<PlannerViewModel>();
+            builder.Services.AddSingleton<PlannerPage>();
+            builder.Services.AddSingleton<PlannerViewModel>();
 
             builder.Services.AddSingleton<CalendarPage>();
             builder.Services.AddSingleton<CalendarViewModel>();
@@ -58,13 +58,15 @@ namespace LearnNote
             builder.Services.AddSingleton<ConfigsPage>();
             builder.Services.AddSingleton<ConfigsViewModel>();
 
-            builder.Services.AddTransientPopup<LoginErrorPopUp, LoginErrorViewModel>();
-
             builder.Services.AddTransientPopup<AddNotebookPopUp, AddNotebookViewModel>();
+
+            builder.Services.AddTransientPopup<DeleteNotebookPopUp, DeleteNotebookViewModel>();
 
             builder.Services.AddTransientPopup<AddNotePopUp, AddNoteViewModel>();
 
+            builder.Services.AddTransientPopup<DeleteNotePopUp, DeleteNoteViewModel>();
 
+            builder.Services.AddTransientPopup<LoginErrorPopUp, LoginErrorViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

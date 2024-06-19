@@ -87,9 +87,6 @@
 	  <Compile Update="Source\MVVM\Views\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Source\MVVM\Views\PopUps\ManageActivityPopUp.xaml.cs">
-	    <DependentUpon>ManageActivityPopUp.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Source\MVVM\Views\SignUpPage.xaml.cs">
 	    <DependentUpon>SignUpPage.xaml</DependentUpon>
 	  </Compile>
@@ -121,9 +118,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Source\MVVM\Views\PlannerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Source\MVVM\Views\PopUps\ManageActivityPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Source\MVVM\Views\PopUps\AddNotebookPopUp.xaml">

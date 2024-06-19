@@ -8,70 +8,63 @@
         private string _name;
         private string _description;
         private byte _dayWeek;
-        private byte _activityNum;
-        private uint _userIdFk;
+        private TimeOnly _startTime;
+        private TimeOnly _endTime;
+        private bool _alarm;
+        private bool _studyTime;
 
         #endregion
 
         #region Getters & Setters
 
-        public ActivityModel Activity
-        {
-            get => this; 
-        }
-
-        public uint ActivityId
-        {
-            get => _activityId;
-            set => _activityId = value;
+        public uint ActivityId 
+        {  
+            get { return _activityId; } 
+            set {  _activityId = value; } 
         }
 
         public string Name
-        {
-            get => _name;
-            set => _name = value;
+        { 
+            get { return _name; } 
+            set {  _name = value; } 
         }
 
         public string Description
         {
-            get => _description;
-            set => _description = value;
+            get { return _description; }
+            set { _description = value; }
         }
 
         public byte DayWeek
-        {
-            get => _dayWeek;
-            set => _dayWeek = value;
+        { 
+            get { return _dayWeek; } 
+            set { _dayWeek = value; } 
         }
 
-        public byte ActivityNum
-        {
-            get => _activityNum;
-            set => _activityNum = value;
+        public TimeOnly StartTime
+        { 
+            get { return _startTime; } 
+            set {  _startTime = value; } 
         }
 
-        public uint UserIdFk
+        public TimeOnly EndTime
         {
-            get => _userIdFk;
-            set => _userIdFk = value;
+            get { return _endTime; }
+            set { _endTime = value; }
         }
 
-
-
-        #endregion
-
-        #region Methods
-        public ActivityModel NewActivity(uint activityId, uint userIdFk, byte dayWeek, byte activityNum)
+        public bool Alarm
         {
-            _activityId = activityId;
-            _name = string.Empty;
-            _description = string.Empty;
-            _dayWeek = dayWeek;
-            _activityNum = activityNum;
-            _userIdFk = userIdFk;
-
-            return this;
+            get { return _alarm; }
+            set { _alarm = value; }
         }
+
+        public bool StudyTime
+        {
+            get { return _studyTime; }
+            set { _studyTime = value; }
+        }
+
         #endregion
     }
 }

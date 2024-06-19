@@ -1,12 +1,10 @@
 ﻿using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Input;
 using LearnNote.Model;
 using LearnNote.Source.Core;
 using LearnNote.Source.DAO;
 using LearnNote.Source.MVVM.ViewModels.PopUps;
 using LearnNote.Source.MVVM.Views;
-using LearnNote.Source.MVVM.Views.PopUps;
 using NLog;
 using System.Collections.ObjectModel;
 
@@ -113,9 +111,9 @@ namespace LearnNote.Source.MVVM.ViewModels
         }
 
         [RelayCommand]
-        public void DisplayDeleteNotebookPopUp()
+        public async Task DisplayDeleteNotebookPopUp()
         {
-            Shell.Current.ShowPopup(new DeleteNotebookPopUp(NotebookId,  NotebookTitle, UserId));
+            _popupService.ShowPopup<DeleteNotebookViewModel>(onPresenting: viewModel => { viewModel.NotebookTitle = _notebookTitle; viewModel.UserIdFk = UserId; viewModel.NotebookId = NotebookId;  });
         }
     }
 }

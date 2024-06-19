@@ -202,9 +202,12 @@
                                 x:Name="notebooks"
                                 ItemsSource="{Binding Notebooks}" 
                                 HorizontalOptions="Fill" 
-                                VerticalOptions="Fill"
-                                ItemsLayout="VerticalGrid, 5">
-
+                                VerticalOptions="Fill">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout
+                                        Orientation="Vertical"
+                                        Span="5"/>
+                                </CollectionView.ItemsLayout>
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
